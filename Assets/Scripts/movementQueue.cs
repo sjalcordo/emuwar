@@ -4,118 +4,169 @@ using UnityEngine;
 
 public class movementQueue : MonoBehaviour
 {
+    // Initialization
     public int[] queue;
     public int queuePos;
     public playerMovement pmScript;
     public GameObject bulletPrefab;
     private GameObject bullet;
+    public bool notMoving;
+
+    public GameObject[] queueArray;
+    public Sprite[] sprites;
 
     // Start is called before the first frame update
     void Start()
     {
         queuePos = 0;
+        notMoving = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         // Input to change the position in the array
-        if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0 && pmScript.position.x < pmScript.boundX) {
-            queue[queuePos] = 1;
-            ++queuePos;
-        }
-        else if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") < 0 && pmScript.position.x > -pmScript.boundX) {
-            queue[queuePos] = 2;
-            ++queuePos;
-        }
-        else if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") > 0 && pmScript.position.y < pmScript.boundY - 1) {
-            queue[queuePos] = 3;
-            ++queuePos;
-        }
-        else if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") < 0 && pmScript.position.y > -pmScript.boundY - 1) {
-            queue[queuePos] = 4;
-            ++queuePos;
-        }
-        else if (Input.GetKeyDown("l")) {
-            queue[queuePos] = 5;
-            ++queuePos;
-        }
-        else if (Input.GetKeyDown("k")) {
-            queue[queuePos] = 6;
-            ++queuePos;
-        }
-        else if (Input.GetKeyDown("j")) {
-            queue[queuePos] = 7;
-            ++queuePos;
-        }
-        else if (Input.GetKeyDown("i")) {
-            queue[queuePos] = 8;
-            ++queuePos;
+
+        // If check horizontal axis, which direction, and if we are in bounds
+        // 1 = right
+        // 2 = down
+        // 3 = left
+        // 4 = up
+        // 5 = shoot right
+        // 6 = shoot down
+        // 7 = shoot left
+        // 8 = shoot up
+        if (queuePos < 3 && notMoving) {
+            if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0 && pmScript.position.x < pmScript.boundX - 1) {
+                // set queue array to 1
+                queue[queuePos] = 1;
+                switchSprite(queuePos, 1);
+                ++queuePos;
+            }
+            else if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") < 0 && pmScript.position.x > -pmScript.boundX) {
+                queue[queuePos] = 3;
+                switchSprite(queuePos, 3);
+                ++queuePos;
+            }
+            else if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") > 0 && pmScript.position.y < pmScript.boundY) {
+                queue[queuePos] = 4;
+                switchSprite(queuePos, 4);
+                ++queuePos;
+            }
+            else if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") < 0 && pmScript.position.y > -pmScript.boundY) {
+                queue[queuePos] = 2;
+                switchSprite(queuePos, 2);
+                ++queuePos;
+            }
+            else if (Input.GetKeyDown("l")) {
+                queue[queuePos] = 5;
+                switchSprite(queuePos, 5);
+                ++queuePos;
+            }
+            else if (Input.GetKeyDown("k")) {
+                queue[queuePos] = 6;
+                switchSprite(queuePos, 6);
+                ++queuePos;
+            }
+            else if (Input.GetKeyDown("j")) {
+                queue[queuePos] = 7;
+                switchSprite(queuePos, 7);
+                ++queuePos;
+            }
+            else if (Input.GetKeyDown("i")) {
+                queue[queuePos] = 8;
+                switchSprite(queuePos, 8);
+                ++queuePos;
+            }
         }
 
+        // Backspace erases the current location and moves the queue position bavk
         if (Input.GetKeyDown(KeyCode.Backspace) && queuePos > 0) {
             --queuePos;
             queue[queuePos] = 0;
+            switchSprite(queuePos, 0);
         }
 
+        // Starts the queue coroutine
         if (Input.GetButtonDown("Submit")) {
             StartCoroutine(goThroughQueue());
         }
     }
 
+    void switchSprite(int queuePos, int spriteNum) {
+        queueArray[queuePos].GetComponent<SpriteRenderer>().sprite = sprites[spriteNum];
+    }
+
+    void shoot(int xOffset, int yOffset, Vector3 rotation) {
+        bullet = Instantiate(bulletPrefab, new 
+            Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), 
+            transform.rotation * Quaternion.Euler(rotation));
+    }
+
+    void move(int x, int y) {
+        if (    pmScript.position.x + x <= pmScript.boundX - 1 &&
+                pmScript.position.x + x >= -pmScript.boundX &&
+                pmScript.position.y + y <= pmScript.boundY &&
+                pmScript.position.y + y >= -pmScript.boundY) {
+
+            pmScript.position = new Vector2 (pmScript.position.x + x, pmScript.position.y + y);
+        }
+    }
+
     IEnumerator goThroughQueue() {
+        notMoving = false;
         for (int i = 0; i < 3; ++i) {
             switch(queue[i]) {
+                case 0:
+                    continue;   
+                // Switch case checks all of the possible actions
                 case 1: // Move right
-                    pmScript.position = new Vector2 (pmScript.position.x + 1, pmScript.position.y);
+                    move(1, 0);
                     break;
                 case 2: // Move down
-                    pmScript.position = new Vector2 (pmScript.position.x - 1, pmScript.position.y);
+                    move(0, -1);
                     break;
                 case 3: // Move left
-                    pmScript.position = new Vector2 (pmScript.position.x, pmScript.position.y + 1);
+                    move(-1, 0);
                     break;
                 case 4: // Move up
-                    pmScript.position = new Vector2 (pmScript.position.x, pmScript.position.y - 1);
+                    move(0, 1);
                     break;
                 case 5:
-                    bullet = Instantiate(bulletPrefab, new 
-                        Vector3(transform.position.x + 3, transform.position.y, transform.position.z), 
-                        transform.rotation * Quaternion.Euler(0, 0, -90));
+                    // Creates a bullet in front of the direction
+                    shoot(3, 0, new Vector3(0, 0, -90));
+
                     if (pmScript.position.x > -pmScript.boundX) {
-                        pmScript.position = new Vector2 (pmScript.position.x - 1, pmScript.position.y);
+                        move(-1, 0);
                     }
                     break;
                 case 6:
-                    bullet = Instantiate(bulletPrefab, new 
-                        Vector3(transform.position.x, transform.position.y - 3, transform.position.z), 
-                        transform.rotation * Quaternion.Euler(0, 0, 180));
+                    shoot(0, -3, new Vector3(0, 0, 180));
+
                     if (pmScript.position.y < pmScript.boundY) {
-                        pmScript.position = new Vector2 (pmScript.position.x, pmScript.position.y + 1);
+                        move(0, 1);
                     }
                     break;
                 case 7:
-                    bullet = Instantiate(bulletPrefab, new 
-                        Vector3(transform.position.x - 3, transform.position.y, transform.position.z), 
-                        transform.rotation * Quaternion.Euler(0, 0, 90));
+                    shoot(-3, 0, new Vector3(0, 0, 90));
+
                     if (pmScript.position.x < pmScript.boundX - 1) {
-                        pmScript.position = new Vector2 (pmScript.position.x + 1, pmScript.position.y);
+                        move(1, 0);
                     }
                     break;
                 case 8:
-                    bullet = Instantiate(bulletPrefab, new 
-                        Vector3(transform.position.x, transform.position.y + 3, transform.position.z), 
-                        transform.rotation * Quaternion.Euler(0, 0, 0));
+                    shoot(0, 3, new Vector3(0, 0, 0));
+
                     if (pmScript.position.y > -pmScript.boundY) {
-                        pmScript.position = new Vector2 (pmScript.position.x, pmScript.position.y - 1);
+                        move(0, -1);
                     }
                     break;
             }
+            queue[i] = 0;
+            switchSprite(i, 0);
             yield return new WaitForSeconds(0.5f);
         }
-        for (int i = 0; i < 3; ++i) {
-            queue[i] = 0;
-        }
         queuePos = 0;
+        notMoving = true;
     }
 }
