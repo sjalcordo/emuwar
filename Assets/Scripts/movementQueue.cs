@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class movementQueue : MonoBehaviour
 {
+    // Initialization
     public int[] queue;
     public int queuePos;
     public playerMovement pmScript;
@@ -20,7 +21,18 @@ public class movementQueue : MonoBehaviour
     void Update()
     {
         // Input to change the position in the array
+
+        // If check horizontal axis, which direction, and if we are in bounds
+        // 1 = right
+        // 2 = down
+        // 3 = left
+        // 4 = up
+        // 5 = shoot right
+        // 6 = shoot down
+        // 7 = shoot left
+        // 8 = shoot up
         if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0 && pmScript.position.x < pmScript.boundX) {
+            // set queue array to 1
             queue[queuePos] = 1;
             ++queuePos;
         }
@@ -53,11 +65,13 @@ public class movementQueue : MonoBehaviour
             ++queuePos;
         }
 
+        // Backspace erases the current location and moves the queue position bavk
         if (Input.GetKeyDown(KeyCode.Backspace) && queuePos > 0) {
             --queuePos;
             queue[queuePos] = 0;
         }
 
+        // Starts the queue coroutine
         if (Input.GetButtonDown("Submit")) {
             StartCoroutine(goThroughQueue());
         }
@@ -66,6 +80,7 @@ public class movementQueue : MonoBehaviour
     IEnumerator goThroughQueue() {
         for (int i = 0; i < 3; ++i) {
             switch(queue[i]) {
+                // Switch case checks all of the possible actions
                 case 1: // Move right
                     pmScript.position = new Vector2 (pmScript.position.x + 1, pmScript.position.y);
                     break;
@@ -79,9 +94,11 @@ public class movementQueue : MonoBehaviour
                     pmScript.position = new Vector2 (pmScript.position.x, pmScript.position.y - 1);
                     break;
                 case 5:
+                    // Creates a bullet in front of the direction
                     bullet = Instantiate(bulletPrefab, new 
                         Vector3(transform.position.x + 3, transform.position.y, transform.position.z), 
                         transform.rotation * Quaternion.Euler(0, 0, -90));
+
                     if (pmScript.position.x > -pmScript.boundX) {
                         pmScript.position = new Vector2 (pmScript.position.x - 1, pmScript.position.y);
                     }
@@ -90,6 +107,7 @@ public class movementQueue : MonoBehaviour
                     bullet = Instantiate(bulletPrefab, new 
                         Vector3(transform.position.x, transform.position.y - 3, transform.position.z), 
                         transform.rotation * Quaternion.Euler(0, 0, 180));
+
                     if (pmScript.position.y < pmScript.boundY) {
                         pmScript.position = new Vector2 (pmScript.position.x, pmScript.position.y + 1);
                     }
@@ -98,6 +116,7 @@ public class movementQueue : MonoBehaviour
                     bullet = Instantiate(bulletPrefab, new 
                         Vector3(transform.position.x - 3, transform.position.y, transform.position.z), 
                         transform.rotation * Quaternion.Euler(0, 0, 90));
+
                     if (pmScript.position.x < pmScript.boundX - 1) {
                         pmScript.position = new Vector2 (pmScript.position.x + 1, pmScript.position.y);
                     }
@@ -106,6 +125,7 @@ public class movementQueue : MonoBehaviour
                     bullet = Instantiate(bulletPrefab, new 
                         Vector3(transform.position.x, transform.position.y + 3, transform.position.z), 
                         transform.rotation * Quaternion.Euler(0, 0, 0));
+
                     if (pmScript.position.y > -pmScript.boundY) {
                         pmScript.position = new Vector2 (pmScript.position.x, pmScript.position.y - 1);
                     }
