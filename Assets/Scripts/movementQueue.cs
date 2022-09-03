@@ -90,15 +90,13 @@ public class movementQueue : MonoBehaviour
             switchSprite(queuePos, 0);
         }
 
-        // Starts the queue coroutine
-        if (Input.GetButtonDown("Submit")) {
-            StartCoroutine(goThroughQueue());
-        }
+        
     }
 
     void turnStart() {
         foreach (GameObject enemy in enemies) {
-            enemy.GetComponent<enemyMovement>().takeTurn(pmScript.getPosition());
+            //commented this out temporarily... Not sure where this turnStart method is getting used
+            //enemy.GetComponent<enemyMovement>().takeTurn(pmScript.getPosition());
         }
     }
 
@@ -177,5 +175,69 @@ public class movementQueue : MonoBehaviour
         }
         queuePos = 0;
         notMoving = true;
+    }
+
+    public void setQueuePos(int a)
+    {
+        queuePos = a;
+    }
+
+    public void queueStart() {
+        notMoving = false;
+    }
+
+    public void queueStop() {
+        notMoving = true;
+    }
+
+    public void queueStep(int i) {
+        switch(queue[i]) {
+            case 0:
+                break;   
+            // Switch case checks all of the possible actions
+            case 1: // Move right
+                move(1, 0);
+                break;
+            case 2: // Move down
+                move(0, -1);
+                break;
+            case 3: // Move left
+                move(-1, 0);
+                break;
+            case 4: // Move up
+                move(0, 1);
+                break;
+            case 5:
+                // Creates a bullet in front of the direction
+                shoot(3, 0, new Vector3(0, 0, -90));
+
+                if (pmScript.position.x > -pmScript.boundX) {
+                    move(-1, 0);
+                }
+                break;
+            case 6:
+                shoot(0, -3, new Vector3(0, 0, 180));
+
+                if (pmScript.position.y < pmScript.boundY) {
+                    move(0, 1);
+                }
+                break;
+            case 7:
+                shoot(-3, 0, new Vector3(0, 0, 90));
+
+                if (pmScript.position.x < pmScript.boundX - 1) {
+                    move(1, 0);
+                }
+                break;
+            case 8:
+                shoot(0, 3, new Vector3(0, 0, 0));
+
+                if (pmScript.position.y > -pmScript.boundY) {
+                    move(0, -1);
+                }
+                break;
+        }
+        queue[i] = 0;
+        switchSprite(i, 0);
     }
 }
