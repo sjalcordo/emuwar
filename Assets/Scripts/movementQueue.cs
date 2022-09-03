@@ -248,6 +248,7 @@ public class movementQueue : MonoBehaviour
                 move(0, 1);
                 break;
             //shoot right
+            /*
             case 5:
                 
                 setAussieAnim(1);
@@ -300,6 +301,25 @@ public class movementQueue : MonoBehaviour
                     move(0, -1);
                 }
                 break;
+            */
+            case 5: // shoot right
+                // Creates a bullet in front of the direction
+                setAussieAnim(1);
+                aussieSpriteRenderer.flipX = false;
+
+                break;
+            case 6: //shoot down
+                //setAussieAnim(2);
+
+                break;
+            case 7: //shoot left
+                setAussieAnim(1);
+                aussieSpriteRenderer.flipX = true;
+                
+                break;
+            case 8: //shoot up
+                //setAussieAnim(3);
+                break;
         }
         queue[i] = 0;
         switchSprite(i, 0);
@@ -324,10 +344,8 @@ public class movementQueue : MonoBehaviour
                     enemies = GameObject.FindGameObjectsWithTag("Enemy");
                     
                     for (int j = 0; j < enemies.Length; ++j) {  
-                        if ((enemies[j].GetComponent<enemyMovement>().position == 
-                                new Vector2(pmScript.position.x + 1, pmScript.position.y) ||
-                            (enemies[j].GetComponent<enemyMovement>().position == 
-                                new Vector2(pmScript.position.x + 2, pmScript.position.y))) ) {
+                        if ((enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x + 1, pmScript.position.y) ||
+                            (enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x + 2, pmScript.position.y))) ) {
                                     
                             gm.enemies[j] = null;
                             Destroy(enemies[j]);
