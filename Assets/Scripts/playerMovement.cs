@@ -5,6 +5,7 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
     public Vector2 position = new Vector2(0,0);
+    public Vector3 offset = new Vector3(2.3f, 0, 0);
     public int boundX;
     public int boundY;
 
@@ -12,7 +13,7 @@ public class playerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        position = new Vector2(-4, 0);
     }
 
     // Update is called once per frame
@@ -35,7 +36,7 @@ public class playerMovement : MonoBehaviour
         */
 
         // Actually moves the circle/player around the tilemap
-        transform.position = new Vector3(position.x * 1.6f, position.y * 1.6f, transform.position.z);
+        transform.position = new Vector3(position.x * 2f, position.y * 2f, transform.position.z) + offset;
         Debug.Log(position);
     }
 }
