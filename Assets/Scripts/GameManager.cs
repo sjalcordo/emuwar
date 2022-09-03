@@ -14,10 +14,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerMQ = player.GetComponent<movementQueue>();
-        
 
         //ported from movementQueue.cs
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies)
+        {
+            enemy.GetComponent<enemyMovement>().takeTurn();
+        }
     }
 
     // Update is called once per frame
@@ -38,9 +41,12 @@ public class GameManager : MonoBehaviour
             foreach(GameObject enemy in enemies)
             {
                 enemy.GetComponent<enemyMovement>().turn(i);
-                Debug.Log("did it");
             }
+            //change to wait for animation to finish
             yield return new WaitForSeconds(0.5f);
+            while(player.GetComponent<movementQueue>().currentAnim != 0){
+                yield return new WaitForSeconds(0.1f);
+            }
         }
         //Added setQueuePos because it was missing here
         playerMQ.setQueuePos(0);

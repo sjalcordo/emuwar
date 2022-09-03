@@ -17,6 +17,13 @@ public class movementQueue : MonoBehaviour
 
     public GameObject[] enemies;
 
+    //animation things
+    public Animator aussieAnimator;
+    public int currentAnim;
+    // 0 = idle
+    // 1 = attack hori
+    public SpriteRenderer aussieSpriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,6 +97,7 @@ public class movementQueue : MonoBehaviour
             switchSprite(queuePos, 0);
         }
 
+        aussieAnimator.SetInteger("currentAnim", currentAnim);
         
     }
 
@@ -119,7 +127,7 @@ public class movementQueue : MonoBehaviour
             pmScript.position = new Vector2 (pmScript.position.x + x, pmScript.position.y + y);
         }
     }
-
+    /*
     IEnumerator goThroughQueue() {
         notMoving = false;
         for (int i = 0; i < 3; ++i) {
@@ -176,7 +184,7 @@ public class movementQueue : MonoBehaviour
         }
         queuePos = 0;
         notMoving = true;
-    }
+    }*/
 
     public GameObject emuCheckX(int x, int y, int dir)
     {
@@ -237,6 +245,7 @@ public class movementQueue : MonoBehaviour
             case 4: // Move up
                 move(0, 1);
                 break;
+<<<<<<< HEAD
             //shoot right
             case 5:
                 // Creates a bullet in front of the direction
@@ -286,9 +295,81 @@ public class movementQueue : MonoBehaviour
                 if (pmScript.position.y > -pmScript.boundY) {
                     move(0, -1);
                 }
+=======
+            case 5: // shoot right
+                // Creates a bullet in front of the direction
+                setAussieAnim(1);
+                aussieSpriteRenderer.flipX = false;
+
+                break;
+            case 6: //shoot down
+                //setAussieAnim(2);
+
+                break;
+            case 7: //shoot left
+                setAussieAnim(1);
+                aussieSpriteRenderer.flipX = true;
+                
+                break;
+            case 8: //shoot up
+                //setAussieAnim(3);
+
+>>>>>>> 2299d44eb047c7de7fd9622c0968fd047acd2889
                 break;
         }
         queue[i] = 0;
         switchSprite(i, 0);
     }
+
+    public void setAussieAnim(int i)
+    {
+        currentAnim = i;
+    }
+
+    public void triggerShoot(int i)
+    {
+        switch (i) {
+            case 5://horizontal
+                if (!aussieSpriteRenderer.flipX) //right
+                {
+                    shoot(3, 0, new Vector3(0, 0, -90));
+                    if (pmScript.position.x > -pmScript.boundX)
+                    {
+                        move(-1, 0);
+                    }
+                }
+                else // left
+                {
+                    shoot(-3, 0, new Vector3(0, 0, 90));
+                    if (pmScript.position.x < pmScript.boundX - 1)
+                    {
+                        move(1, 0);
+                    }
+                }
+                break;
+            case 6://down
+                shoot(0, -3, new Vector3(0, 0, 180));
+                if (pmScript.position.y < pmScript.boundY)
+                {
+                    move(0, 1);
+                }
+                break;
+            /* case 7://left
+                shoot(-3, 0, new Vector3(0, 0, 90));
+                if (pmScript.position.x < pmScript.boundX - 1)
+                {
+                    move(1, 0);
+                }
+                break;*/
+            case 8://up
+                shoot(0, 3, new Vector3(0, 0, 0));
+                if (pmScript.position.y > -pmScript.boundY)
+                {
+                    move(0, -1);
+                }
+                break;
+        }
+            
+    }
+
 }
