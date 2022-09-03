@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 74063709}
   - component: {fileID: 74063708}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Square
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,10 +157,6 @@ MonoBehaviour:
   offset: {x: 2.35, y: 0, z: 0}
   boundX: 4
   boundY: 2
-  playerScript: {fileID: 235247644}
-  queue: 000000000000000000000000
-  queuePos: 0
-  playerPos: {x: 0, y: 0}
 --- !u!212 &74063709
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -227,53 +223,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &196573990
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 196573992}
-  - component: {fileID: 196573991}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &196573991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196573990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dd2513d784da77459252219369dabc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 235247641}
-  playerMQ: {fileID: 0}
-  enemies: []
---- !u!4 &196573992
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196573990}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8563818, y: -1.8582498, z: 0.02876129}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &235247641
 GameObject:
@@ -373,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6626045bac31a447b976e3e76edc96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: -4, y: 0}
+  position: {x: 0, y: 0}
   offset: {x: 2.3, y: 0, z: 0}
   boundX: 4
   boundY: 2
@@ -408,7 +357,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 714bb0fe688087a45a1bf9ff757ea145, type: 3}
   - {fileID: 21300000, guid: 4af7471fad0d9b1459a072877c3349ca, type: 3}
   - {fileID: 21300000, guid: a6b052026612ad2478fc656d10900f4f, type: 3}
-  enemies: []
 --- !u!1 &395908449
 GameObject:
   m_ObjectHideFlags: 0
