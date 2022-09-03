@@ -245,8 +245,8 @@ public class movementQueue : MonoBehaviour
             case 4: // Move up
                 move(0, 1);
                 break;
-<<<<<<< HEAD
             //shoot right
+            /*
             case 5:
                 // Creates a bullet in front of the direction
                 shoot(3, 0, new Vector3(0, 0, -90));
@@ -295,7 +295,9 @@ public class movementQueue : MonoBehaviour
                 if (pmScript.position.y > -pmScript.boundY) {
                     move(0, -1);
                 }
-=======
+                break;
+            */
+            
             case 5: // shoot right
                 // Creates a bullet in front of the direction
                 setAussieAnim(1);
@@ -313,9 +315,8 @@ public class movementQueue : MonoBehaviour
                 break;
             case 8: //shoot up
                 //setAussieAnim(3);
-
->>>>>>> 2299d44eb047c7de7fd9622c0968fd047acd2889
                 break;
+       
         }
         queue[i] = 0;
         switchSprite(i, 0);
@@ -337,6 +338,18 @@ public class movementQueue : MonoBehaviour
                     {
                         move(-1, 0);
                     }
+                    enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                    
+                    foreach (GameObject enemy in enemies) {
+                        if ((enemy.GetComponent<enemyMovement>().position == 
+                                new Vector2(pmScript.position.x + 1, pmScript.position.y) ||
+                            (enemy.GetComponent<enemyMovement>().position == 
+                                new Vector2(pmScript.position.x + 2, pmScript.position.y))) ) {
+
+                            Destroy(enemy);
+                        }
+                    }
+                    
                 }
                 else // left
                 {
@@ -344,6 +357,17 @@ public class movementQueue : MonoBehaviour
                     if (pmScript.position.x < pmScript.boundX - 1)
                     {
                         move(1, 0);
+                    }
+                    enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                    
+                    foreach (GameObject enemy in enemies) {
+                        if ((enemy.GetComponent<enemyMovement>().position == 
+                                new Vector2(pmScript.position.x - 1, pmScript.position.y) ||
+                            (enemy.GetComponent<enemyMovement>().position == 
+                                new Vector2(pmScript.position.x - 2, pmScript.position.y))) ) {
+
+                            Destroy(enemy);
+                        }
                     }
                 }
                 break;

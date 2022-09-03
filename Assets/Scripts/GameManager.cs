@@ -40,7 +40,9 @@ public class GameManager : MonoBehaviour
             //enemy.queueStep (implemented below)
             foreach(GameObject enemy in enemies)
             {
-                enemy.GetComponent<enemyMovement>().turn(i);
+                if(enemy != null){
+                    enemy.GetComponent<enemyMovement>().turn(i);
+                }
             }
             //change to wait for animation to finish
             yield return new WaitForSeconds(0.5f);
