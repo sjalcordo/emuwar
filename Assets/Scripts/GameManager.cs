@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour
             {
                 enemy.GetComponent<enemyMovement>().turn(i);
             }
-            yield return new WaitForSeconds(0.5f);
+            //change to wait for animation to finish
+            yield return new WaitForSeconds(5f);
         }
         //Added setQueuePos because it was missing here
         playerMQ.setQueuePos(0);

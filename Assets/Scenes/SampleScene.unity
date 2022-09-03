@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 235247642}
   - component: {fileID: 235247644}
   - component: {fileID: 235247645}
+  - component: {fileID: 235247646}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -336,8 +337,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.85142475, g: 0.4764151, b: 1, a: 1}
+  m_Sprite: {fileID: -1897983619, guid: 0c77b79510769614ca27f0ef53827ed2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -356,7 +357,7 @@ Transform:
   m_GameObject: {fileID: 235247641}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5.7, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.845, y: 1.845, z: 1.845}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -410,6 +411,29 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4af7471fad0d9b1459a072877c3349ca, type: 3}
   - {fileID: 21300000, guid: a6b052026612ad2478fc656d10900f4f, type: 3}
   enemies: []
+  aussieAnimator: {fileID: 235247646}
+  currentAnim: 0
+  aussieSpriteRenderer: {fileID: 235247642}
+--- !u!95 &235247646
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235247641}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b48104487cb0d7c4395baad2d2a2cf30, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &395908449
 GameObject:
   m_ObjectHideFlags: 0
