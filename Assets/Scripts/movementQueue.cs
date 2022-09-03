@@ -121,10 +121,21 @@ public class movementQueue : MonoBehaviour
     }
 
     void move(int x, int y) {
+        bool emuInFront = false;
+        foreach (GameObject enemy in enemies) {
+            if (enemy != null) {
+                if (pmScript.position.x + x == enemy.GetComponent<enemyMovement>().position.x &&
+                    pmScript.position.y + y == enemy.GetComponent<enemyMovement>().position.y) {
+
+                    emuInFront = true;
+                }
+            }
+        }
         if (    pmScript.position.x + x <= pmScript.boundX - 1 &&
                 pmScript.position.x + x >= -pmScript.boundX &&
                 pmScript.position.y + y <= pmScript.boundY &&
-                pmScript.position.y + y >= -pmScript.boundY) {
+                pmScript.position.y + y >= -pmScript.boundY &&
+                !emuInFront) {
 
             pmScript.position = new Vector2 (pmScript.position.x + x, pmScript.position.y + y);
         }
