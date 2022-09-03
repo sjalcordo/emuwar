@@ -24,6 +24,8 @@ public class movementQueue : MonoBehaviour
     // 1 = attack hori
     public SpriteRenderer aussieSpriteRenderer;
 
+    public GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -340,13 +342,14 @@ public class movementQueue : MonoBehaviour
                     }
                     enemies = GameObject.FindGameObjectsWithTag("Enemy");
                     
-                    foreach (GameObject enemy in enemies) {
-                        if ((enemy.GetComponent<enemyMovement>().position == 
+                    for (int j = 0; j < enemies.Length; ++j) {  
+                        if ((enemies[j].GetComponent<enemyMovement>().position == 
                                 new Vector2(pmScript.position.x + 1, pmScript.position.y) ||
-                            (enemy.GetComponent<enemyMovement>().position == 
+                            (enemies[j].GetComponent<enemyMovement>().position == 
                                 new Vector2(pmScript.position.x + 2, pmScript.position.y))) ) {
-
-                            Destroy(enemy);
+                                    
+                            gm.enemies[j] = null;
+                            Destroy(enemies[j]);
                         }
                     }
                     
@@ -360,13 +363,14 @@ public class movementQueue : MonoBehaviour
                     }
                     enemies = GameObject.FindGameObjectsWithTag("Enemy");
                     
-                    foreach (GameObject enemy in enemies) {
-                        if ((enemy.GetComponent<enemyMovement>().position == 
+                    for (int j = 0; j < enemies.Length; ++j) {  
+                        if ((enemies[j].GetComponent<enemyMovement>().position == 
                                 new Vector2(pmScript.position.x - 1, pmScript.position.y) ||
-                            (enemy.GetComponent<enemyMovement>().position == 
+                            (enemies[j].GetComponent<enemyMovement>().position == 
                                 new Vector2(pmScript.position.x - 2, pmScript.position.y))) ) {
-
-                            Destroy(enemy);
+                                    
+                            gm.enemies[j] = null;
+                            Destroy(enemies[j]);
                         }
                     }
                 }

@@ -107,9 +107,11 @@ public class enemyMovement : MonoBehaviour
             }
             Debug.Log("(" + playerScript.getPosition().x + "," + playerScript.getPosition().y + ") (" + (position.x + x) + "," + (position.y + y) + ")");
             foreach (GameObject enemy in enemies) {
-                if (enemy.GetComponent<enemyMovement>().position.x == position.x + x && 
-                    enemy.GetComponent<enemyMovement>().position.y == position.y + y) {
-                    obstacle = true;
+                if (enemy != null){
+                    if (enemy.GetComponent<enemyMovement>().position.x == position.x + x && 
+                        enemy.GetComponent<enemyMovement>().position.y == position.y + y) {
+                        obstacle = true;
+                    }
                 }
             }
             if (!obstacle) {
