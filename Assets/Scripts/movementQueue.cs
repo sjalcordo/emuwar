@@ -248,8 +248,10 @@ public class movementQueue : MonoBehaviour
                 move(0, 1);
                 break;
             //shoot right
-            /*
             case 5:
+                
+                setAussieAnim(1);
+                aussieSpriteRenderer.flipX = false;
                 // Creates a bullet in front of the direction
                 shoot(3, 0, new Vector3(0, 0, -90));
                 emu = emuCheckX((int)pmScript.position.x, (int)pmScript.position.y, 1);
@@ -298,27 +300,6 @@ public class movementQueue : MonoBehaviour
                     move(0, -1);
                 }
                 break;
-            */
-            
-            case 5: // shoot right
-                // Creates a bullet in front of the direction
-                setAussieAnim(1);
-                aussieSpriteRenderer.flipX = false;
-
-                break;
-            case 6: //shoot down
-                //setAussieAnim(2);
-
-                break;
-            case 7: //shoot left
-                setAussieAnim(1);
-                aussieSpriteRenderer.flipX = true;
-                
-                break;
-            case 8: //shoot up
-                //setAussieAnim(3);
-                break;
-       
         }
         queue[i] = 0;
         switchSprite(i, 0);

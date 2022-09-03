@@ -86,6 +86,9 @@ public class enemyMovement : MonoBehaviour
                 case 4: // Move up
                     step(0, 1);
                     break;
+                case 5:
+                    attack();
+                    break;
         }
         queue[i] = 0;
     }
@@ -118,6 +121,16 @@ public class enemyMovement : MonoBehaviour
                 position = new Vector2(position.x + x, position.y + y);
             }
 
+        }
+    }
+
+    public void attack()
+    {
+        if(abs(playerPos.x-position.x)==1 || abs(playerPos.y-position.y)==1)
+        {
+            GameObject player = GameObject.Find("/Player");
+            playerMovement a = player.GetComponent<playerMovement>();
+            a.damagePlayer();
         }
     }
 
