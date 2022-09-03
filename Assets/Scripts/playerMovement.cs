@@ -9,7 +9,7 @@ public class playerMovement : MonoBehaviour
     public int boundX;
     public int boundY;
 
-    int health = 3;
+    public int health = 3;
 
 
     // Start is called before the first frame update
