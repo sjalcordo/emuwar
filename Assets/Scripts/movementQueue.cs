@@ -24,6 +24,8 @@ public class movementQueue : MonoBehaviour
     // 1 = attack hori
     public SpriteRenderer aussieSpriteRenderer;
 
+    public GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -319,6 +321,19 @@ public class movementQueue : MonoBehaviour
                     {
                         move(-1, 0);
                     }
+                    enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                    
+                    for (int j = 0; j < enemies.Length; ++j) {  
+                        if ((enemies[j].GetComponent<enemyMovement>().position == 
+                                new Vector2(pmScript.position.x + 1, pmScript.position.y) ||
+                            (enemies[j].GetComponent<enemyMovement>().position == 
+                                new Vector2(pmScript.position.x + 2, pmScript.position.y))) ) {
+                                    
+                            gm.enemies[j] = null;
+                            Destroy(enemies[j]);
+                        }
+                    }
+                    
                 }
                 else // left
                 {
@@ -326,6 +341,18 @@ public class movementQueue : MonoBehaviour
                     if (pmScript.position.x < pmScript.boundX - 1)
                     {
                         move(1, 0);
+                    }
+                    enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                    
+                    for (int j = 0; j < enemies.Length; ++j) {  
+                        if ((enemies[j].GetComponent<enemyMovement>().position == 
+                                new Vector2(pmScript.position.x - 1, pmScript.position.y) ||
+                            (enemies[j].GetComponent<enemyMovement>().position == 
+                                new Vector2(pmScript.position.x - 2, pmScript.position.y))) ) {
+                                    
+                            gm.enemies[j] = null;
+                            Destroy(enemies[j]);
+                        }
                     }
                 }
                 break;

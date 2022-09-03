@@ -38,13 +38,11 @@ public class GameManager : MonoBehaviour
         playerMQ.queueStart();
         for (int i = 0; i < 3; ++i) {
             playerMQ.queueStep(i);
-            //enemy.queueStep (implemented below)   
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach(GameObject enemy in enemies)
-            {
-            
-                if(enemy != null){
-                    enemy.GetComponent<enemyMovement>().turn(i);
+            //enemy.queueStep (implemented below
+            for (int j = 0; j < enemies.Length; ++j) {  
+                Debug.Log(enemies[j]);
+                if(enemies[j] != null){
+                    enemies[j].GetComponent<enemyMovement>().turn(i);
                 }
                 
                 if(player.GetComponent<playerMovement>().getHealth()<=0)
