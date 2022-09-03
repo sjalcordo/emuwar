@@ -9,6 +9,8 @@ public class playerMovement : MonoBehaviour
     public int boundX;
     public int boundY;
 
+    int health = 3;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,17 @@ public class playerMovement : MonoBehaviour
 
         // Actually moves the circle/player around the tilemap
         transform.position = new Vector3(position.x * 2f, position.y * 2f, transform.position.z) + offset;
+    }
+
+    public int damagePlayer()
+    {
+        health--;
+        Debug.Log("Ouch!");
+        if(health == 0)
+        {
+            //lose
+        }
+        return health;
     }
 
     public Vector2 getPosition () {
