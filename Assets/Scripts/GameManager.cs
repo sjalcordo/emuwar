@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public movementQueue playerMQ;
 
+    bool stop = false;
+
     //ported from movementQueue.cs
     public GameObject[] enemies;
 
@@ -27,20 +29,18 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // Starts the queue coroutine
-        if (Input.GetButtonDown("Submit")) {
+        if (Input.GetButtonDown("Submit") && !stop) {
             // go through queue
             StartCoroutine(goThroughQueue());
         }
     }
 
     IEnumerator goThroughQueue() {
-        bool stop = false;
         playerMQ.queueStart();
         for (int i = 0; i < 3; ++i) {
             playerMQ.queueStep(i);
             //enemy.queueStep (implemented below
             for (int j = 0; j < enemies.Length; ++j) {  
-                Debug.Log(enemies[j]);
                 if(enemies[j] != null){
                     enemies[j].GetComponent<enemyMovement>().turn(i);
                 }
@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour
             {
                 enemy.GetComponent<enemyMovement>().takeTurn();
             }
+        } else {
+            Destroy(player);
         }
     }
 }

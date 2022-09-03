@@ -44,7 +44,7 @@ public class playerMovement : MonoBehaviour
     public int damagePlayer()
     {
         health--;
-        Debug.Log("Ouch!");
+        Debug.Log("Ouch! " + health);
         return health;
     }
     
