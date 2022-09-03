@@ -37,9 +37,11 @@ public class GameManager : MonoBehaviour
         playerMQ.queueStart();
         for (int i = 0; i < 3; ++i) {
             playerMQ.queueStep(i);
-            //enemy.queueStep (implemented below)
+            //enemy.queueStep (implemented below)   
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach(GameObject enemy in enemies)
             {
+            
                 if(enemy != null){
                     enemy.GetComponent<enemyMovement>().turn(i);
                 }
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
         //Added setQueuePos because it was missing here
         playerMQ.setQueuePos(0);
         playerMQ.queueStop();
+        
         foreach(GameObject enemy in enemies)
         {
             enemy.GetComponent<enemyMovement>().takeTurn();
