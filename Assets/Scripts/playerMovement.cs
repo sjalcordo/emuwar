@@ -45,13 +45,13 @@ public class playerMovement : MonoBehaviour
     {
         health--;
         Debug.Log("Ouch!");
-        if(health == 0)
-        {
-            //lose
-        }
         return health;
     }
-
+    
+    public int getHealth()
+    {
+        return health;
+    }
     public Vector2 getPosition () {
         return position;
     }
