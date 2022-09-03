@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 74063709}
   - component: {fileID: 74063708}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,6 +157,10 @@ MonoBehaviour:
   offset: {x: 2.35, y: 0, z: 0}
   boundX: 4
   boundY: 2
+  playerScript: {fileID: 235247644}
+  queue: 000000000000000000000000
+  queuePos: 0
+  playerPosition: {x: 0, y: 0}
 --- !u!212 &74063709
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -322,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6626045bac31a447b976e3e76edc96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 0}
+  position: {x: -4, y: 0}
   offset: {x: 2.3, y: 0, z: 0}
   boundX: 4
   boundY: 2

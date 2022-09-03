@@ -15,11 +15,14 @@ public class movementQueue : MonoBehaviour
     public GameObject[] queueArray;
     public Sprite[] sprites;
 
+    public GameObject[] enemies;
+
     // Start is called before the first frame update
     void Start()
     {
         queuePos = 0;
         notMoving = true;
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     // Update is called once per frame
@@ -90,6 +93,12 @@ public class movementQueue : MonoBehaviour
         // Starts the queue coroutine
         if (Input.GetButtonDown("Submit")) {
             StartCoroutine(goThroughQueue());
+        }
+    }
+
+    void turnStart() {
+        foreach (GameObject enemy in enemies) {
+            enemy.GetComponent<enemyMovement>().takeTurn(pmScript.getPosition());
         }
     }
 
