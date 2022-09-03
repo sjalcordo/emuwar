@@ -15,6 +15,9 @@ public class movementQueue : MonoBehaviour
     public GameObject[] queueArray;
     public Sprite[] sprites;
 
+    //animation stuff
+    public Animator aussieAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -134,27 +137,29 @@ public class movementQueue : MonoBehaviour
                     break;
                 case 5:
                     // Creates a bullet in front of the direction
+                    //shoot right
                     shoot(3, 0, new Vector3(0, 0, -90));
-
+                    aussieAnimator.SetBool("isAttackingHori", true);
                     if (pmScript.position.x > -pmScript.boundX) {
                         move(-1, 0);
                     }
+                    
                     break;
-                case 6:
+                case 6: //shoot down
                     shoot(0, -3, new Vector3(0, 0, 180));
 
                     if (pmScript.position.y < pmScript.boundY) {
                         move(0, 1);
                     }
                     break;
-                case 7:
+                case 7: //shoot left
                     shoot(-3, 0, new Vector3(0, 0, 90));
 
                     if (pmScript.position.x < pmScript.boundX - 1) {
                         move(1, 0);
                     }
                     break;
-                case 8:
+                case 8: //shoot up
                     shoot(0, 3, new Vector3(0, 0, 0));
 
                     if (pmScript.position.y > -pmScript.boundY) {
