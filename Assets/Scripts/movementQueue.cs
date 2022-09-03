@@ -152,6 +152,7 @@ public class movementQueue : MonoBehaviour
                     shoot(3, 0, new Vector3(0, 0, -90));
 
                     if (pmScript.position.x > -pmScript.boundX) {
+                        
                         move(-1, 0);
                     }
                     break;
@@ -185,6 +186,34 @@ public class movementQueue : MonoBehaviour
         notMoving = true;
     }*/
 
+    public GameObject emuCheckX(int x, int y, int dir)
+    {
+        foreach(GameObject emu in enemies)
+        {
+            
+            enemyMovement emuMov = emu.GetComponent<enemyMovement>();
+            if((emuMov.position.x== x || emuMov.position.x == x+dir) && emuMov.position.y == y)
+            {
+                return emu;
+            }
+        }
+        return null;
+    }
+
+    public GameObject emuCheckY(int x, int y, int dir)
+    {
+        foreach(GameObject emu in enemies)
+        {
+            enemyMovement emuMov = emu.GetComponent<enemyMovement>();
+            if((emuMov.position.y== y || emuMov.position.y == y+dir) && emuMov.position.x == x)
+            {
+                return emu;
+            }
+        }
+        return null;
+    }
+    
+
     public void setQueuePos(int a)
     {
         queuePos = a;
@@ -199,6 +228,7 @@ public class movementQueue : MonoBehaviour
     }
 
     public void queueStep(int i) {
+        GameObject emu;
         switch(queue[i]) {
             case 0:
                 break;   
@@ -215,6 +245,57 @@ public class movementQueue : MonoBehaviour
             case 4: // Move up
                 move(0, 1);
                 break;
+<<<<<<< HEAD
+            //shoot right
+            case 5:
+                // Creates a bullet in front of the direction
+                shoot(3, 0, new Vector3(0, 0, -90));
+                emu = emuCheckX((int)pmScript.position.x, (int)pmScript.position.y, 1);
+                if(emu!=null)
+                {
+                    Destroy(emu);
+                }
+                if (pmScript.position.x > -pmScript.boundX) {
+                    move(-1, 0);
+                }
+                break;
+            //shoot down
+            case 6:
+                shoot(0, -3, new Vector3(0, 0, 180));
+
+                emu = emuCheckY((int)pmScript.position.x, (int)pmScript.position.y, -1);
+                if(emu!=null)
+                {
+                    Destroy(emu);
+                }
+                if (pmScript.position.y < pmScript.boundY) {
+                    move(0, 1);
+                }
+                break;
+            //shoot left
+            case 7:
+                shoot(-3, 0, new Vector3(0, 0, 90));
+                emu = emuCheckX((int)pmScript.position.x, (int)pmScript.position.y, -1);
+                if(emu!=null)
+                {
+                    Destroy(emu);
+                }
+                if (pmScript.position.x < pmScript.boundX - 1) {
+                    move(1, 0);
+                }
+                break;
+            //shoot up
+            case 8:
+                shoot(0, 3, new Vector3(0, 0, 0));
+                emu = emuCheckY((int)pmScript.position.x, (int)pmScript.position.y, 1);
+                if(emu!=null)
+                {
+                    Destroy(emu);
+                }
+                if (pmScript.position.y > -pmScript.boundY) {
+                    move(0, -1);
+                }
+=======
             case 5: // shoot right
                 // Creates a bullet in front of the direction
                 setAussieAnim(1);
@@ -233,6 +314,7 @@ public class movementQueue : MonoBehaviour
             case 8: //shoot up
                 //setAussieAnim(3);
 
+>>>>>>> 2299d44eb047c7de7fd9622c0968fd047acd2889
                 break;
         }
         queue[i] = 0;
