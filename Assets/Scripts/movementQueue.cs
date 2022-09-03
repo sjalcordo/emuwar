@@ -230,7 +230,7 @@ public class movementQueue : MonoBehaviour
     }
 
     public void queueStep(int i) {
-        GameObject emu;
+        //GameObject emu;
         switch(queue[i]) {
             case 0:
                 break;   
@@ -318,7 +318,7 @@ public class movementQueue : MonoBehaviour
                 
                 break;
             case 8: //shoot up
-                //setAussieAnim(3);
+                setAussieAnim(3);
                 break;
         }
         queue[i] = 0;
@@ -379,7 +379,21 @@ public class movementQueue : MonoBehaviour
                 if (pmScript.position.y < pmScript.boundY)
                 {
                     move(0, 1);
+
+
                 }
+
+                for (int j = 0; j < enemies.Length; ++j)
+                {
+                    if ((enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x, pmScript.position.y - 1 ) ||
+                        (enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x, pmScript.position.y - 2))))
+                    {
+
+                        gm.enemies[j] = null;
+                        Destroy(enemies[j]);
+                    }
+                }
+
                 break;
             /* case 7://left
                 shoot(-3, 0, new Vector3(0, 0, 90));
@@ -387,13 +401,26 @@ public class movementQueue : MonoBehaviour
                 {
                     move(1, 0);
                 }
-                break;*/
+                break;
+            */
             case 8://up
                 shoot(0, 3, new Vector3(0, 0, 0));
                 if (pmScript.position.y > -pmScript.boundY)
                 {
                     move(0, -1);
                 }
+
+                for (int j = 0; j < enemies.Length; ++j)
+                {
+                    if ((enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x, pmScript.position.y + 1) ||
+                        (enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x, pmScript.position.y + 2))))
+                    {
+
+                        gm.enemies[j] = null;
+                        Destroy(enemies[j]);
+                    }
+                }
+
                 break;
         }
             
