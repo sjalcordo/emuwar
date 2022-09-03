@@ -12,7 +12,8 @@ public class movementQueue : MonoBehaviour
     private GameObject bullet;
     public bool notMoving;
 
-    public GameObject[] sprites;
+    public GameObject[] queueArray;
+    public Sprite[] sprites;
 
     // Start is called before the first frame update
     void Start()
@@ -39,34 +40,42 @@ public class movementQueue : MonoBehaviour
             if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0 && pmScript.position.x < pmScript.boundX - 1) {
                 // set queue array to 1
                 queue[queuePos] = 1;
+                switchSprite(queuePos, 1);
                 ++queuePos;
             }
             else if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") < 0 && pmScript.position.x > -pmScript.boundX) {
                 queue[queuePos] = 3;
+                switchSprite(queuePos, 3);
                 ++queuePos;
             }
             else if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") > 0 && pmScript.position.y < pmScript.boundY) {
                 queue[queuePos] = 4;
+                switchSprite(queuePos, 4);
                 ++queuePos;
             }
             else if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") < 0 && pmScript.position.y > -pmScript.boundY) {
                 queue[queuePos] = 2;
+                switchSprite(queuePos, 2);
                 ++queuePos;
             }
             else if (Input.GetKeyDown("l")) {
                 queue[queuePos] = 5;
+                switchSprite(queuePos, 5);
                 ++queuePos;
             }
             else if (Input.GetKeyDown("k")) {
                 queue[queuePos] = 6;
+                switchSprite(queuePos, 6);
                 ++queuePos;
             }
             else if (Input.GetKeyDown("j")) {
                 queue[queuePos] = 7;
+                switchSprite(queuePos, 7);
                 ++queuePos;
             }
             else if (Input.GetKeyDown("i")) {
                 queue[queuePos] = 8;
+                switchSprite(queuePos, 8);
                 ++queuePos;
             }
         }
@@ -75,12 +84,17 @@ public class movementQueue : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Backspace) && queuePos > 0) {
             --queuePos;
             queue[queuePos] = 0;
+            switchSprite(queuePos, 0);
         }
 
         // Starts the queue coroutine
         if (Input.GetButtonDown("Submit")) {
             StartCoroutine(goThroughQueue());
         }
+    }
+
+    void switchSprite(int queuePos, int spriteNum) {
+        queueArray[queuePos].GetComponent<SpriteRenderer>().sprite = sprites[spriteNum];
     }
 
     void shoot(int xOffset, int yOffset, Vector3 rotation) {
@@ -149,6 +163,7 @@ public class movementQueue : MonoBehaviour
                     break;
             }
             queue[i] = 0;
+            switchSprite(i, 0);
             yield return new WaitForSeconds(0.5f);
         }
         queuePos = 0;
