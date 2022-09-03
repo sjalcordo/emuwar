@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public movementQueue playerMQ;
 
+    bool stop = false;
+
     //ported from movementQueue.cs
     public GameObject[] enemies;
 
@@ -27,7 +29,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // Starts the queue coroutine
-        if (Input.GetButtonDown("Submit")) {
+        if (Input.GetButtonDown("Submit") && !stop) {
             // go through queue
             StartCoroutine(goThroughQueue());
         }
@@ -42,6 +44,13 @@ public class GameManager : MonoBehaviour
                 if(enemy != null){
                     enemy.GetComponent<enemyMovement>().turn(i);
                 }
+                
+                if(player.GetComponent<playerMovement>().getHealth()<=0)
+                {
+                    playerMQ.queueStart();
+                    stop = true; 
+                    break;
+                }
             }
             //change to wait for animation to finish
             yield return new WaitForSeconds(0.5f);
@@ -49,15 +58,20 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
             }
         }
-        //Added setQueuePos because it was missing here
+        if(!stop)
+        {
+            
+            foreach(GameObject enemy in enemies)
+            {
+                if(enemy != null) {
+                    enemy.GetComponent<enemyMovement>().takeTurn();
+                }
+            }
+        } 
+        else {
+            //Destroy(player);
+        }
         playerMQ.setQueuePos(0);
         playerMQ.queueStop();
-        
-        foreach(GameObject enemy in enemies)
-        {
-            if(enemy != null){
-                enemy.GetComponent<enemyMovement>().takeTurn();
-            }
-        }
     }
 }

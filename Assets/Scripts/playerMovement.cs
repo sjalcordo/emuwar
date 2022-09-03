@@ -44,14 +44,14 @@ public class playerMovement : MonoBehaviour
     public int damagePlayer()
     {
         health--;
-        Debug.Log("Ouch!");
-        if(health == 0)
-        {
-            //lose
-        }
+        Debug.Log("Ouch! " + health);
         return health;
     }
-
+    
+    public int getHealth()
+    {
+        return health;
+    }
     public Vector2 getPosition () {
         return position;
     }
