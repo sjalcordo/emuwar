@@ -32,6 +32,8 @@ public class levelManager : MonoBehaviour
 
     public GameManager gm;
 
+    bool levelClearing = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,9 +56,15 @@ public class levelManager : MonoBehaviour
             clearLevel();
             startLevel(1);
         }
+        if(GameObject.FindGameObjectsWithTag("Enemy").Length == 0) {
+            clearLevel();
+            startLevel(1);
+        }
+
     }
 
     public void startLevel(int i) {
+
         pm.position = levelList[i].startLocation;
         foreach (Vector2 enemyLoc in levelList[i].enemyLocations) {
             enemy = Instantiate(enemyPrefab, new Vector3(enemyLoc.x, enemyLoc.y, transform.position.z), transform.rotation);
@@ -67,9 +75,12 @@ public class levelManager : MonoBehaviour
         }
         gm.walls = levelList[i].wallLocations;
         gm.enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        bool levelClearing = false;
     }
 
     public void clearLevel() {
+
+        bool levelClearing = true;
         
         GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in currentEnemies) {
