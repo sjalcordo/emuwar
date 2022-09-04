@@ -385,7 +385,7 @@ public class movementQueue : MonoBehaviour
                         }
                     }
                     shoot(3, 0, new Vector3(0, 0, -90));
-                    if (pmScript.position.x < pmScript.boundX - 1)
+                    if (pmScript.position.x > -pmScript.boundX)
                     {
                         move(-1, 0);
                     }
@@ -442,7 +442,7 @@ public class movementQueue : MonoBehaviour
                     }
                 }
                 shoot(0, -0, new Vector3(0, 0, 180));
-                if (pmScript.position.x < pmScript.boundX - 1)
+                if (pmScript.position.x < pmScript.boundY)
                 {
                     move(0, 1);
                 }
@@ -457,21 +457,30 @@ public class movementQueue : MonoBehaviour
                 break;
             */
             case 8://up
+                foreach (Vector2 wall in gm.getWalls()){
+                    if (pmScript.position.x == wall.x && pmScript.position.y + 1 == wall.y) {
+                        wall1 = true;
+                    }
+                    if (pmScript.position.x == wall.x && pmScript.position.y + 2 == wall.y) {
+                        wall2 = true;
+                    }
+                }
+                enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                    
+                for (int j = 0; j < enemies.Length; ++j) {  
+                    if ((enemies[j].GetComponent<enemyMovement>().position == 
+                            new Vector2(pmScript.position.x, pmScript.position.y + 1) ||
+                        (enemies[j].GetComponent<enemyMovement>().position == 
+                            new Vector2(pmScript.position.x, pmScript.position.y + 2))) ) {
+                                    
+                        gm.enemies[j] = null;
+                        Destroy(enemies[j]);
+                    }
+                }
                 shoot(0, 3, new Vector3(0, 0, 0));
                 if (pmScript.position.y > -pmScript.boundY)
                 {
                     move(0, -1);
-                }
-
-                for (int j = 0; j < enemies.Length; ++j)
-                {
-                    if ((enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x, pmScript.position.y + 1) ||
-                        (enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x, pmScript.position.y + 2))))
-                    {
-
-                        gm.enemies[j] = null;
-                        Destroy(enemies[j]);
-                    }
                 }
 
                 break;
