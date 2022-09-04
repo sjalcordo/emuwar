@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +35,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Submit") && !stop) {
             // go through queue
             StartCoroutine(goThroughQueue());
+        }
+        else if (Input.GetButtonDown("Cancel"))
+        {
+            SceneManager.LoadScene(0);
         }
     }
 
