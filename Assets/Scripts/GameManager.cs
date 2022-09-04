@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public movementQueue playerMQ;
     public bool going = false;
-
+    public AudioClip deathClip;
     bool stop = false;
 
     //ported from movementQueue.cs
@@ -78,12 +78,20 @@ public class GameManager : MonoBehaviour
             }
         } 
         else {
-            Destroy(player);
-            SceneManager.LoadScene(0);
+            StartCoroutine(die());
         }
         playerMQ.setQueuePos(0);
         playerMQ.queueStop();
         going = false;
+    }
+
+    IEnumerator die()
+    {
+            AudioSource.PlayClipAtPoint (deathClip, transform.position);
+            yield return new WaitForSeconds(3);
+            Destroy(player);
+            SceneManager.LoadScene(0);
+
     }
 
     public List<Vector2> getWalls(){
