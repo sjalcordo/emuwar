@@ -242,8 +242,7 @@ MonoBehaviour:
     - {x: 2, y: 1}
     - {x: 2, y: 0}
     - {x: -2, y: 0}
-    laserLocation:
-    - {x: 3, y: 0}
+    laserLocation: []
   - startLocation: {x: -1, y: 0}
     enemyLocations:
     - {x: -4, y: 0}
@@ -251,8 +250,7 @@ MonoBehaviour:
     - {x: -1, y: -2}
     - {x: 1, y: 0}
     wallLocations: []
-    laserLocation:
-    - {x: 3, y: 0}
+    laserLocation: []
   - startLocation: {x: -1, y: 0}
     enemyLocations:
     - {x: 1, y: -1}
@@ -268,16 +266,15 @@ MonoBehaviour:
     - {x: 2, y: 1}
     - {x: 2, y: 0}
     - {x: 2, y: 0}
-    laserLocation:
-    - {x: -4, y: 0}
-    - {x: 3, y: 0}
+    laserLocation: []
   StartLocs: []
   pm: {fileID: 0}
-  laserEmuColor: {r: 1, g: 0.43137255, b: 0.40784314, a: 1}
+  laserEmuColor: {r: 0, g: 0, b: 0, a: 0}
   enemyPrefab: {fileID: 5285086469749664969, guid: 6cb982c7184ae684daa5b9f38f5398af, type: 3}
-  laserPrefab: {fileID: 9142465240938490035, guid: 8bb777da37c23ef4fac58a62057af226, type: 3}
+  laserPrefab: {fileID: 0}
   wallPrefab: {fileID: 209801912220060344, guid: 054fd069993480b41add0a56ecde1db7, type: 3}
   gm: {fileID: 0}
+  cam: {fileID: 519420031}
 --- !u!1 &235247641 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3371647244653357170, guid: 8b20cac57c8b5c5418ac3bbda0ecc15f, type: 3}
@@ -912,7 +909,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.34548184, g: 0.4528302, b: 0.28408688, a: 0}
+  m_BackGroundColor: {r: 0.31519723, g: 0.25075653, b: 0.46226418, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
