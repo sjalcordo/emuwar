@@ -19,7 +19,7 @@ public class enemyMovement : MonoBehaviour
     public int queuePos;
     public Vector2 playerPos;
     public Vector2 target;
-
+    double seed = 0;
     double dir;
 
     public GameObject[] enemies;
@@ -182,7 +182,7 @@ public class enemyMovement : MonoBehaviour
         Debug.Log("Laser Attack! Hyah!");
         double isX = dir%2;
         double isY = abs(dir%2-1);
-        shoot((float)((2.5*(1-dir))*isY)*-1, (float)(2.5*(2-dir)*isX)*-1, new Vector3(0, 0, (float)(90*(dir))), true);
+        shoot((float)((2.5*(1-dir))*isY), (float)(2.5*(2-dir)*isX), new Vector3(0, 0, (float)(90*(dir))), true);
         if(dir%2==0)
         {
             //horizontal
@@ -235,7 +235,7 @@ public class enemyMovement : MonoBehaviour
         if(diffX!=0&&diffY!=0)
         {
             //randomly decides between adding an x movement or y movement to the queue
-            if(Random.Range(-1,1)<0)
+            if(Random.Range(-1,1)<0+seed)
             {
                 //Adds a number to the queue using the xDir or yDir as an offset from a base number to 
                 //Achieve the desired queue number without conditionals
@@ -294,6 +294,7 @@ public class enemyMovement : MonoBehaviour
             double posy = position.y;
             if(abs(diffX)<abs(diffY))
             {
+                seed = .8;
                 dir = 2+xDir;
                 if(dist<3)
                 {
@@ -303,6 +304,7 @@ public class enemyMovement : MonoBehaviour
                 }
                 return target;
             }
+            seed = -.8;
             dir = 1+yDir;
             if(dist<3)
                 {
