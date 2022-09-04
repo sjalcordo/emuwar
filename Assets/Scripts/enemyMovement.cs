@@ -12,9 +12,7 @@ public class enemyMovement : MonoBehaviour
     public double projX;
     public double projY;
 
-    public AudioClip hit1 = new AudioClip();
-    public AudioClip hit2 = new AudioClip();
-    public AudioSource source = GetComponent<AudioSource>();
+    
     public GameObject Laser;
     private GameObject bullet;
     public playerMovement playerScript;
@@ -28,6 +26,10 @@ public class enemyMovement : MonoBehaviour
     public GameObject[] enemies;
     public GameManager gm;
 
+    //sounds
+    public AudioSource[] emuAttackSounds = new AudioSource[2];
+    //0 is melee, 1 is laser
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,9 @@ public class enemyMovement : MonoBehaviour
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         takeTurn();
+
+        emuAttackSounds[0] = GameObject.Find("emu hit 1").GetComponent<AudioSource>();
+        emuAttackSounds[0] = GameObject.Find("emu hit 2").GetComponent<AudioSource>();
 
         //initialize queue array
     }
@@ -197,6 +202,7 @@ public class enemyMovement : MonoBehaviour
                 {
                     Debug.Log("Horiz shot from " + position + " to " + playerPos);
                     playerMovement a = playerScript.GetComponent<playerMovement>();
+                    emuAttackSounds[0].Play();
                     a.damagePlayer();
                 }
             }
@@ -208,6 +214,7 @@ public class enemyMovement : MonoBehaviour
                 {
                     Debug.Log("Vert shot from " + position + " to " + playerPos);
                     playerMovement a = playerScript.GetComponent<playerMovement>();
+                    emuAttackSounds[0].Play();
                     a.damagePlayer();
                 }
             }
@@ -224,6 +231,7 @@ public class enemyMovement : MonoBehaviour
             Debug.Log((abs(playerPos.x-position.x)==1&&abs(playerPos.y-position.y)==0) + " " + (abs(playerPos.y-position.y)==1&&(abs(playerPos.x-position.x)==0)));
             GameObject player = GameObject.Find("/Player");
             playerMovement a = player.GetComponent<playerMovement>();
+            emuAttackSounds[0].Play();
             a.damagePlayer();
         }
         
