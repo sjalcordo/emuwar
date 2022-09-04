@@ -16,7 +16,14 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Submit") || Input.GetButtonDown("Jump"))
+        {
+            MenuButtons(0);
+        }
+        else if (Input.GetButtonDown("Cancel"))
+        {
+            MenuButtons(1);
+        }
     }
 
     public void MenuButtons(int i)
@@ -25,11 +32,12 @@ public class MenuManager : MonoBehaviour
         {
             case 0: //start
                 //add sfx
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
                 break;
             case 1: // quit
                 Application.Quit();
                 break;
         }
     }
+
 }
