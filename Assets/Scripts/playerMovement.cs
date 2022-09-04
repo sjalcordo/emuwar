@@ -11,6 +11,9 @@ public class playerMovement : MonoBehaviour
 
     public int health = 3;
 
+    public GameObject ui;
+    public Sprite[] uis = new Sprite[4];
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +49,7 @@ public class playerMovement : MonoBehaviour
         if (!GetComponent<movementQueue>().isDefending){
             health--;
             Debug.Log("Ouch! " + health);
+            ui.GetComponent<SpriteRenderer>().sprite = uis[health];
         }
         return health;
     }
