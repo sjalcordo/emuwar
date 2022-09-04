@@ -18,17 +18,14 @@ using UnityEngine;
 public class levelManager : MonoBehaviour
 {
     public List<level> levelList;
-    public Vector2 levelOneStart;
-    public List<Vector2> levelOneEnemies;
-    public List<Vector2> levelOneWallLocations;
+    public List<List<Vector2>> EnemieLocs;
+    public List<List<Vector2>> LaserLocs;
+    public List<List<Vector2>> WallsLocs;
+    public List<Vector2> StartLocs;
     
-    public Vector2 levelTwoStart;
-    public List<Vector2> levelTwoEnemies;
-
-    public List<Vector2> levelOneLaser;
-    public List<Vector2> levelTwoLaser;
-    public List<Vector2> levelTwoWallLocations;
     public playerMovement pm;
+
+    int currLevel = 0;
 
     public Color laserEmuColor;
 
@@ -45,8 +42,6 @@ public class levelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        levelList.Add(new level(levelOneStart, levelOneEnemies, levelOneWallLocations, levelOneLaser));
-        levelList.Add(new level(levelTwoStart, levelTwoEnemies, levelTwoWallLocations, levelTwoLaser));
 
         pm = GameObject.Find("Player").GetComponent<playerMovement>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -59,14 +54,26 @@ public class levelManager : MonoBehaviour
         if (Input.GetKeyDown("1")) {
             clearLevel();
             startLevel(0);
+            currLevel = 0;
         }
         if (Input.GetKeyDown("2")) {
             clearLevel();
             startLevel(1);
+            currLevel = 1;
+        }
+        if(Input.GetKeyDown("3")) {
+            clearLevel();
+            startLevel(2);
+            currLevel = 2;
         }
         if(GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && !gm.going) {
             clearLevel();
-            startLevel(1);
+            Debug.Log(currLevel);
+            startLevel(currLevel+1);
+            if(currLevel+1<levelList.Count-1)
+            {
+                ++currLevel;
+            }
         }
 
     }
