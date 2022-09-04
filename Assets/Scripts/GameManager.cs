@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
         } 
         else {
             Destroy(player);
+            SceneManager.LoadScene(0);
         }
         playerMQ.setQueuePos(0);
         playerMQ.queueStop();
