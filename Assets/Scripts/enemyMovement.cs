@@ -279,8 +279,10 @@ public class enemyMovement : MonoBehaviour
     {
         target.x = playerPos.x;
             target.y = playerPos.y;
-            double diffX = playerPos.x - projX;
-            double diffY = playerPos.y - projY;
+            double diffX = playerPos.x - position.x;
+            double diffY = playerPos.y - position.y;
+            double xDir = diffX/abs(diffX);
+            double yDir = diffY/abs(diffY);
             double dist = abs(diffX) + abs(diffY);
         if(type==2)
         {
@@ -292,20 +294,22 @@ public class enemyMovement : MonoBehaviour
             double posy = position.y;
             if(abs(diffX)<abs(diffY))
             {
-                dir = 2+diffY;
+                dir = 2+xDir;
                 if(dist<3)
                 {
                     target.y = (float)(posy+diffY);
                 } else {
-                    target.y = (float)posy;
+                    target.y = (float)(posy+diffY);
+                    target.x = (float)(posx - diffX);
                 }
             }
-            dir = 1+diffX;
+            dir = 1+yDir;
             if(dist<3)
                 {
-                        target.x = (float)(posx+diffY);
+                        target.x = (float)(posx+diffX);
                 } else {
-                    target.x = (float)posx;
+                    target.x = (float)(posx + diffX);
+                    target.y = (float)(posy - diffY);
                 }
             return target;
         }
