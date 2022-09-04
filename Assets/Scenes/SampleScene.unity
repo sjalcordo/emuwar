@@ -216,20 +216,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0cdb6b29f739e48b7fa834ebf327cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelList: []
-  levelOneStart: {x: -4, y: 0}
-  levelOneEnemies:
-  - {x: 1, y: 0}
-  levelOneWallLocations:
-  - {x: -1, y: 0}
-  levelTwoStart: {x: -3, y: 0}
-  levelTwoEnemies:
-  - {x: 3, y: 1}
-  levelOneLaser:
-  - {x: 2, y: 0}
-  levelTwoLaser:
-  - {x: 3, y: -1}
-  levelTwoWallLocations: []
+  levelList:
+  - startLocation: {x: -4, y: 0}
+    enemyLocations:
+    - {x: 2, y: 0}
+    wallLocations:
+    - {x: -1, y: 0}
+    laserLocation: []
+  - startLocation: {x: -3, y: 0}
+    enemyLocations:
+    - {x: 1, y: 0}
+    - {x: 3, y: 2}
+    - {x: 3, y: -1}
+    wallLocations:
+    - {x: -2, y: -1}
+    - {x: -1, y: 0}
+    - {x: 0, y: 1}
+    laserLocation: []
+  - startLocation: {x: -4, y: 0}
+    enemyLocations: []
+    wallLocations:
+    - {x: -2, y: -1}
+    - {x: 2, y: -1}
+    - {x: -2, y: 1}
+    - {x: 2, y: 1}
+    - {x: 2, y: 0}
+    - {x: -2, y: 0}
+    laserLocation:
+    - {x: 3, y: 0}
+  - startLocation: {x: -1, y: 0}
+    enemyLocations:
+    - {x: -4, y: 0}
+    - {x: -1, y: 2}
+    - {x: -1, y: -2}
+    - {x: 1, y: 0}
+    wallLocations: []
+    laserLocation:
+    - {x: 3, y: 0}
+  - startLocation: {x: -1, y: 0}
+    enemyLocations:
+    - {x: 1, y: -1}
+    wallLocations:
+    - {x: -3, y: 1}
+    - {x: -3, y: 0}
+    - {x: -3, y: -1}
+    - {x: -1, y: 2}
+    - {x: -1, y: -2}
+    - {x: 0, y: 2}
+    - {x: 0, y: -2}
+    - {x: 1, y: 0}
+    - {x: 2, y: 1}
+    - {x: 2, y: 0}
+    - {x: 2, y: 0}
+    laserLocation:
+    - {x: -4, y: 0}
+    - {x: 3, y: 0}
+  StartLocs: []
   pm: {fileID: 0}
   laserEmuColor: {r: 1, g: 0.43137255, b: 0.40784314, a: 1}
   enemyPrefab: {fileID: 5285086469749664969, guid: 6cb982c7184ae684daa5b9f38f5398af, type: 3}

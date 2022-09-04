@@ -179,6 +179,7 @@ public class enemyMovement : MonoBehaviour
 
     public void attack(double dir)
     {
+        playerPos = playerScript.getPosition();
         double isX = dir%2;
         double isY = abs(dir%2-1);
         shoot((float)((2.5*(1-dir))*isY), (float)(2.5*(2-dir)*isX), new Vector3(0, 0, (float)(90*(dir))), true);
