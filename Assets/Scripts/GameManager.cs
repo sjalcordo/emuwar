@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public movementQueue playerMQ;
 
+    bool stop = false;
+
     //ported from movementQueue.cs
     public GameObject[] enemies;
 
@@ -27,7 +29,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // Starts the queue coroutine
-        if (Input.GetButtonDown("Submit")) {
+        if (Input.GetButtonDown("Submit") && !stop) {
             // go through queue
             StartCoroutine(goThroughQueue());
         }
@@ -38,10 +40,16 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 3; ++i) {
             playerMQ.queueStep(i);
             //enemy.queueStep (implemented below
-            for (int j = 0; j < enemies.Length; ++j) {  
-                Debug.Log(enemies[j]);
-                if(enemies[j] != null){
-                    enemies[j].GetComponent<enemyMovement>().turn(i);
+            foreach(GameObject enemy in enemies) {
+                if(enemy != null){
+                    enemy.GetComponent<enemyMovement>().turn(i);
+                }
+                
+                if(player.GetComponent<playerMovement>().getHealth()<=0)
+                {
+                    playerMQ.queueStart();
+                    stop = true; 
+                    break;
                 }
             }
             //change to wait for animation to finish
@@ -50,13 +58,20 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
             }
         }
-        //Added setQueuePos because it was missing here
+        if(!stop)
+        {
+            
+            foreach(GameObject enemy in enemies)
+            {
+                if(enemy != null) {
+                    enemy.GetComponent<enemyMovement>().takeTurn();
+                }
+            }
+        } 
+        else {
+            //Destroy(player);
+        }
         playerMQ.setQueuePos(0);
         playerMQ.queueStop();
-        
-        foreach(GameObject enemy in enemies)
-        {
-            enemy.GetComponent<enemyMovement>().takeTurn();
-        }
     }
 }

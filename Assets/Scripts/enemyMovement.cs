@@ -126,12 +126,16 @@ public class enemyMovement : MonoBehaviour
 
     public void attack()
     {
-        if(abs(playerPos.x-position.x)==1 || abs(playerPos.y-position.y)==1)
+        playerPos = playerScript.getPosition();
+        if((abs(playerPos.x-position.x)==1&&abs(playerPos.y-position.y)==0) 
+        || (abs(playerPos.y-position.y)==1&&(abs(playerPos.x-position.x)==0)))
         {
+            Debug.Log((abs(playerPos.x-position.x)==1&&abs(playerPos.y-position.y)==0) + " " + (abs(playerPos.y-position.y)==1&&(abs(playerPos.x-position.x)==0)));
             GameObject player = GameObject.Find("/Player");
             playerMovement a = player.GetComponent<playerMovement>();
             a.damagePlayer();
         }
+        
     }
 
     //Added basic move logic

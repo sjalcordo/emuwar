@@ -9,7 +9,7 @@ public class playerMovement : MonoBehaviour
     public int boundX;
     public int boundY;
 
-    int health = 3;
+    public int health = 3;
 
 
     // Start is called before the first frame update
@@ -44,14 +44,14 @@ public class playerMovement : MonoBehaviour
     public int damagePlayer()
     {
         health--;
-        Debug.Log("Ouch!");
-        if(health == 0)
-        {
-            //lose
-        }
+        Debug.Log("Ouch! " + health);
         return health;
     }
-
+    
+    public int getHealth()
+    {
+        return health;
+    }
     public Vector2 getPosition () {
         return position;
     }
