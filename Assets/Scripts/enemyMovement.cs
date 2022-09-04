@@ -12,11 +12,15 @@ public class enemyMovement : MonoBehaviour
     public double projX;
     public double projY;
 
+    public GameObject Laser;
+    private GameObject bullet;
     public playerMovement playerScript;
     public int[] queue = new int[3];
     public int queuePos;
     public Vector2 playerPos;
     public Vector2 target;
+
+    double dir;
 
     public GameObject[] enemies;
     public GameManager gm;
@@ -103,7 +107,6 @@ public class enemyMovement : MonoBehaviour
                 }
                 break;
             case 2:
-                Debug.Log("Laser! Pew Pew!" + queue[i]);
                 switch(queue[i]) {   
                         // Switch case checks all of the possible actions
                         case 1: // Move right
@@ -134,7 +137,6 @@ public class enemyMovement : MonoBehaviour
                 }
                 break;
         }
-        int a;
         queue[i] = 0;
     }
 
@@ -177,6 +179,10 @@ public class enemyMovement : MonoBehaviour
 
     public void attack(double dir)
     {
+        Debug.Log("Laser Attack! Hyah!");
+        double isX = dir%2;
+        double isY = abs(dir%2-1);
+        shoot((float)((2.5*(1-dir))*isY)*-1, (float)(2.5*(2-dir)*isX)*-1, new Vector3(0, 0, (float)(90*(dir))), true);
         if(dir%2==0)
         {
             //horizontal
@@ -271,12 +277,44 @@ public class enemyMovement : MonoBehaviour
     //Target finding algorithm. Always picks adjacent tile to enemy nearest self.
     public Vector2 findTarget()
     {
+        target.x = playerPos.x;
+            target.y = playerPos.y;
+            double diffX = playerPos.x - projX;
+            double diffY = playerPos.y - projY;
+            double dist = abs(diffX) + abs(diffY);
+        if(type==2)
+        {
+            //Finds the closer sight line to the player (either vertical or horizontal).
+            //Tries to get on this sight line while maintaining some level of distance.
+            //Two pathfinding things come out of this function: target and dir. The laser emu
+            //navigates toward target the same way a regular emu might. Dir is used for laser firing logic.
+            double posx = position.x;
+            double posy = position.y;
+            if(abs(diffX)<abs(diffY))
+            {
+                dir = 2+diffY;
+                if(dist<3)
+                {
+                    target.y = (float)(posy+diffY);
+                } else {
+                    target.y = (float)posy;
+                }
+            }
+            dir = 1+diffX;
+            if(dist<3)
+                {
+                        target.x = (float)(posx+diffY);
+                } else {
+                    target.x = (float)posx;
+                }
+            return target;
+        }
        double x = position.x;
        double y = position.y;
        target.x = playerPos.x;
        target.y = playerPos.y;
-       double diffX = playerPos.x - projX;
-       double diffY = playerPos.y - projY;
+        diffX = playerPos.x - projX;
+        diffY = playerPos.y - projY;
        if(diffX!=0 && diffY !=0)
        {
            if(Random.Range(-1,1)<0)
@@ -300,6 +338,34 @@ public class enemyMovement : MonoBehaviour
 
     public void takeTurn () {
         playerPos = playerScript.getPosition();
+        if(type==2)
+        {
+            playerPos = playerScript.getPosition();
+        //basic queue addition
+        target = findTarget();
+        double shotDir = dir;
+        projX = position.x;
+        projY = position.y;
+        double diffX = target.x - projX;
+        double diffY = target.y - projY;
+        double dist = diffX+diffY;
+        for(int i = 0; i<2; ++i)
+        {
+            if(dist>0)
+            {
+                move();
+            }
+        }
+        while(queuePos<3)
+        {
+            queue[queuePos] = (int)(5 + shotDir);
+            queuePos ++;
+        }
+        
+       
+        queuePos = 0;
+        } else 
+        {
         //basic queue addition
         target = findTarget();
         projX = position.x;
@@ -324,8 +390,22 @@ public class enemyMovement : MonoBehaviour
        
         queuePos = 0;
 
+        }
 
 
+    }
 
+    void shoot(float xOffset, float yOffset, Vector3 rotation, bool isLong) {
+        if (isLong) {
+            bullet = Instantiate(Laser, new 
+                Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), 
+                transform.rotation * Quaternion.Euler(rotation));
+        }
+        else {
+            bullet = Instantiate(Laser, new 
+                Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), 
+                transform.rotation * Quaternion.Euler(rotation));
+        }
+        
     }
 }
