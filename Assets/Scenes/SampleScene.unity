@@ -230,6 +230,7 @@ MonoBehaviour:
   - {x: 3, y: -1}
   levelTwoWallLocations: []
   pm: {fileID: 0}
+  laserEmuColor: {r: 1, g: 0.4009434, b: 0.4009434, a: 1}
   enemyPrefab: {fileID: 5285086469749664969, guid: 6cb982c7184ae684daa5b9f38f5398af, type: 3}
   laserPrefab: {fileID: 9142465240938490035, guid: 8bb777da37c23ef4fac58a62057af226, type: 3}
   wallPrefab: {fileID: 209801912220060344, guid: 054fd069993480b41add0a56ecde1db7, type: 3}
