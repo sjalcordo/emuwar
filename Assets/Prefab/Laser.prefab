@@ -97,3 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7717a0fd412a6049a25ee8d9cc2fe56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLaser: 1

@@ -22,7 +22,7 @@ public class levelManager : MonoBehaviour
     public List<List<Vector2>> LaserLocs;
     public List<List<Vector2>> WallsLocs;
     public List<Vector2> StartLocs;
-    
+    bool levelClearing;
     public playerMovement pm;
 
     int currLevel = 0;
@@ -36,8 +36,7 @@ public class levelManager : MonoBehaviour
     GameObject wall;
 
     public GameManager gm;
-
-    bool levelClearing = false;
+    public Camera cam;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +45,7 @@ public class levelManager : MonoBehaviour
         pm = GameObject.Find("Player").GetComponent<playerMovement>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         startLevel(0);
+        cam.backgroundColor = new Color(88f/255f, 115f/255f, 72f/255f);
     }
 
     // Update is called once per frame
@@ -74,6 +74,26 @@ public class levelManager : MonoBehaviour
             {
                 ++currLevel;
             }
+            switch (currLevel) {
+                case 0:
+                    cam.backgroundColor = new Color(88f/255f, 115f/255f, 72f/255f);
+                    break;
+                case 1:
+                    cam.backgroundColor = new Color(63f/255f, 106f/255f, 69f/255f);
+                    break;
+                case 2:
+                    cam.backgroundColor = new Color(52f/255f, 91f/255f, 72f/255f);
+                    break;
+                case 3:
+                    cam.backgroundColor = new Color(68f/255f, 109f/255f, 105f/255f);
+                    break;
+                case 4:
+                    cam.backgroundColor = new Color(61f/255f, 70f/255f, 91f/255f);
+                    break;
+                case 5:
+                    cam.backgroundColor = new Color(81f/255f, 64f/255f, 118f/255f);
+                    break;
+            }
         }
 
     }
@@ -101,12 +121,12 @@ public class levelManager : MonoBehaviour
         }
         gm.walls = levelList[i].wallLocations;
         gm.enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        bool levelClearing = false;
+        levelClearing = false;
     }
 
     public void clearLevel() {
 
-        bool levelClearing = true;
+        levelClearing = true;
         
         GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in currentEnemies) {
