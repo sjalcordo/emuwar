@@ -179,7 +179,6 @@ public class enemyMovement : MonoBehaviour
 
     public void attack(double dir)
     {
-        Debug.Log("Laser Attack! Hyah!");
         double isX = dir%2;
         double isY = abs(dir%2-1);
         shoot((float)((2.5*(1-dir))*isY), (float)(2.5*(2-dir)*isX), new Vector3(0, 0, (float)(90*(dir))), true);
@@ -190,6 +189,7 @@ public class enemyMovement : MonoBehaviour
             {
                 if(abs(position.x-playerPos.x)<=3)
                 {
+                    Debug.Log("Horiz shot from " + position + " to " + playerPos);
                     playerMovement a = playerScript.GetComponent<playerMovement>();
                     a.damagePlayer();
                 }
@@ -200,6 +200,7 @@ public class enemyMovement : MonoBehaviour
             {
                 if(abs(position.y-playerPos.y)<=3)
                 {
+                    Debug.Log("Vert shot from " + position + " to " + playerPos);
                     playerMovement a = playerScript.GetComponent<playerMovement>();
                     a.damagePlayer();
                 }

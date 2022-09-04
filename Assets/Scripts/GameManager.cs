@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
     public movementQueue playerMQ;
+    public bool going = false;
 
     bool stop = false;
 
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator goThroughQueue() {
         playerMQ.queueStart();
+        going = true;
         for (int i = 0; i < 3; ++i) {
             playerMQ.queueStep(i);
             //enemy.queueStep (implemented below
@@ -77,9 +79,11 @@ public class GameManager : MonoBehaviour
         } 
         else {
             Destroy(player);
+            SceneManager.LoadScene(0);
         }
         playerMQ.setQueuePos(0);
         playerMQ.queueStop();
+        going = false;
     }
 
     public List<Vector2> getWalls(){

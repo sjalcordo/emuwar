@@ -49,7 +49,7 @@ public class playerMovement : MonoBehaviour
         if (!GetComponent<movementQueue>().isDefending){
             health--;
             Debug.Log("Ouch! " + health);
-            if(health<=0)
+            if(health>=0)
             {
                 ui.GetComponent<SpriteRenderer>().sprite = uis[health];
             }
