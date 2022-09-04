@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     //ported from movementQueue.cs
     public GameObject[] enemies;
+    public List<Vector2> walls;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
         {
             enemy.GetComponent<enemyMovement>().takeTurn();
         }
+        walls.Add(new Vector2(-1, 0));
     }
 
     // Update is called once per frame
@@ -69,9 +71,13 @@ public class GameManager : MonoBehaviour
             }
         } 
         else {
-            //Destroy(player);
+            Destroy(player);
         }
         playerMQ.setQueuePos(0);
         playerMQ.queueStop();
+    }
+
+    public List<Vector2> getWalls(){
+        return walls;
     }
 }

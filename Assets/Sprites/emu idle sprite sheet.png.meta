@@ -118,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e534ca67b9697ae4793cd99212f92d59
-      internalID: -343133705
+      spriteID: 1d459e90a43492e45918c1922e282d89
+      internalID: 487523716
       vertices: []
       indices: 
       edges: []
@@ -139,8 +139,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2d681f5283d349429f744b3909e0830
-      internalID: -1914310995
+      spriteID: df8b1621a95a2aa409d9eb369379747e
+      internalID: 1108287026
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b12e2a12d072be4cbc8ab4ba002d7f2
-      internalID: -249539120
+      spriteID: 03f685b1d59844a40a473e990bf71e41
+      internalID: -1515744155
       vertices: []
       indices: 
       edges: []
@@ -181,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f3927cb70a972849a6f664a02b49250
-      internalID: 1221821906
+      spriteID: 9f74f37e1ea42d342820da8b78ce0882
+      internalID: -945585543
       vertices: []
       indices: 
       edges: []
@@ -190,7 +190,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 2dbdb8436bc67da4eb6231d2b3f1fa65
     internalID: 0
     vertices: []
     indices: 
@@ -198,10 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      emu idle sprite sheet_0: -343133705
-      emu idle sprite sheet_2: -249539120
-      emu idle sprite sheet_3: 1221821906
-      emu idle sprite sheet_1: -1914310995
+      emu idle sprite sheet_0: 487523716
+      emu idle sprite sheet_2: -1515744155
+      emu idle sprite sheet_3: -945585543
+      emu idle sprite sheet_1: 1108287026
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
