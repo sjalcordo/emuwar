@@ -61,7 +61,7 @@ public class enemyMovement : MonoBehaviour
     }
 
     //written because Unity doesnt like it when I try to abs doubles
-    double abs(double a)
+    public double abs(double a)
     {
         if(a<0)
         {
