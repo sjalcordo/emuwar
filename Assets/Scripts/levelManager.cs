@@ -30,6 +30,8 @@ public class levelManager : MonoBehaviour
     public List<Vector2> levelTwoWallLocations;
     public playerMovement pm;
 
+    public Color laserEmuColor;
+
     public GameObject enemyPrefab;
     public GameObject laserPrefab;
     GameObject enemy;
@@ -81,6 +83,7 @@ public class levelManager : MonoBehaviour
         foreach(Vector2 laserLoc in levelList[i].laserLocation)
         {
             enemy = Instantiate(enemyPrefab, new Vector3(laserLoc.x, laserLoc.y, transform.position.z), transform.rotation);
+            enemy.GetComponent<SpriteRenderer>().color = laserEmuColor;
             enemy.GetComponent<enemyMovement>().position = laserLoc;
             enemy.GetComponent<enemyMovement>().updateType(2);
         }
