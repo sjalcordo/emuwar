@@ -31,6 +31,7 @@ public class enemyMovement : MonoBehaviour
         
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        takeTurn();
 
         //initialize queue array
     }

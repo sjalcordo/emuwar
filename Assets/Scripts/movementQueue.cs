@@ -49,23 +49,23 @@ public class movementQueue : MonoBehaviour
         // 7 = shoot left
         // 8 = shoot up
         if (queuePos < 3 && notMoving) {
-            if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0 && pmScript.position.x < pmScript.boundX - 1) {
+            if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0) {
                 // set queue array to 1
                 queue[queuePos] = 1;
                 switchSprite(queuePos, 1);
                 ++queuePos;
             }
-            else if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") < 0 && pmScript.position.x > -pmScript.boundX) {
+            else if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") < 0) {
                 queue[queuePos] = 3;
                 switchSprite(queuePos, 3);
                 ++queuePos;
             }
-            else if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") > 0 && pmScript.position.y < pmScript.boundY) {
+            else if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") > 0) {
                 queue[queuePos] = 4;
                 switchSprite(queuePos, 4);
                 ++queuePos;
             }
-            else if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") < 0 && pmScript.position.y > -pmScript.boundY) {
+            else if (Input.GetButtonDown("Vertical") && Input.GetAxisRaw("Vertical") < 0) {
                 queue[queuePos] = 2;
                 switchSprite(queuePos, 2);
                 ++queuePos;
