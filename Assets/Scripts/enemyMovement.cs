@@ -225,7 +225,9 @@ public class enemyMovement : MonoBehaviour
             Debug.Log((abs(playerPos.x-position.x)==1&&abs(playerPos.y-position.y)==0) + " " + (abs(playerPos.y-position.y)==1&&(abs(playerPos.x-position.x)==0)));
             GameObject player = GameObject.Find("/Player");
             playerMovement a = player.GetComponent<playerMovement>();
+            Vector2 back = position;
             a.damagePlayer();
+
         }
         
     }
@@ -383,6 +385,7 @@ public class enemyMovement : MonoBehaviour
         } else 
         {
         //basic queue addition
+        playerPos = playerScript.getPosition();
         target = findTarget();
         projX = position.x;
         projY = position.y;
@@ -391,6 +394,8 @@ public class enemyMovement : MonoBehaviour
         double dist = diffX+diffY;
         for(int i = 0; i<2; ++i)
         {
+            
+            Debug.Log(seed + " " + target);
             move();
         }
         if(dist>3)
