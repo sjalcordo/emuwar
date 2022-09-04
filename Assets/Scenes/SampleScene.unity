@@ -340,7 +340,8 @@ MonoBehaviour:
     - {x: 2, y: 1}
     - {x: 2, y: 0}
     - {x: -2, y: 0}
-    laserLocation: []
+    laserLocation:
+    - {x: 3, y: 0}
   - startLocation: {x: -1, y: 0}
     enemyLocations:
     - {x: -4, y: 0}
@@ -384,7 +385,7 @@ MonoBehaviour:
     - {x: 3, y: -2}
   StartLocs: []
   pm: {fileID: 0}
-  laserEmuColor: {r: 0, g: 0, b: 0, a: 0}
+  laserEmuColor: {r: 1, g: 0.43137255, b: 0.40784314, a: 1}
   enemyPrefab: {fileID: 5285086469749664969, guid: 6cb982c7184ae684daa5b9f38f5398af, type: 3}
   laserPrefab: {fileID: 0}
   wallPrefab: {fileID: 209801912220060344, guid: 054fd069993480b41add0a56ecde1db7, type: 3}
