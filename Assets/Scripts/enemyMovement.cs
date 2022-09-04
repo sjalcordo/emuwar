@@ -12,6 +12,9 @@ public class enemyMovement : MonoBehaviour
     public double projX;
     public double projY;
 
+    public AudioClip hit1 = new AudioClip();
+    public AudioClip hit2 = new AudioClip();
+    public AudioSource source = GetComponent<AudioSource>();
     public GameObject Laser;
     private GameObject bullet;
     public playerMovement playerScript;
