@@ -64,7 +64,7 @@ public class levelManager : MonoBehaviour
             clearLevel();
             startLevel(1);
         }
-        if(GameObject.FindGameObjectsWithTag("Enemy").Length == 0) {
+        if(GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && !gm.going) {
             clearLevel();
             startLevel(1);
         }
