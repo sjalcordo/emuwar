@@ -28,6 +28,8 @@ public class enemyMovement : MonoBehaviour
     public GameObject[] enemies;
     public GameManager gm;
 
+    public Animator emuAnimator;
+
     //sounds
     public AudioSource[] emuAttackSounds = new AudioSource[2];
     //0 is melee, 1 is laser
@@ -206,6 +208,7 @@ public class enemyMovement : MonoBehaviour
                     Debug.Log("Horiz shot from " + position + " to " + playerPos);
                     playerMovement a = playerScript.GetComponent<playerMovement>();
                     emuAttackSounds[0].Play();
+                    emuAnimator.Play("emuattack");
                     a.damagePlayer();
                 }
             }
@@ -218,6 +221,7 @@ public class enemyMovement : MonoBehaviour
                     Debug.Log("Vert shot from " + position + " to " + playerPos);
                     playerMovement a = playerScript.GetComponent<playerMovement>();
                     emuAttackSounds[0].Play();
+                    emuAnimator.Play("emuattack");
                     a.damagePlayer();
                 }
             }
@@ -235,9 +239,17 @@ public class enemyMovement : MonoBehaviour
             GameObject player = GameObject.Find("/Player");
             playerMovement a = player.GetComponent<playerMovement>();
             emuAttackSounds[0].Play();
+            emuAnimator.Play("emuattack");
             a.damagePlayer();
+            
         }
         
+    }
+
+    public void idle(int i)
+    {
+
+        emuAnimator.Play("emuidle");
     }
 
     //Added basic move logic
