@@ -247,12 +247,14 @@ public class movementQueue : MonoBehaviour
                 break;   
             // Switch case checks all of the possible actions
             case 1: // Move right
+                aussieSpriteRenderer.flipX = false;
                 move(1, 0);
                 break;
             case 2: // Move down
                 move(0, -1);
                 break;
             case 3: // Move left
+                aussieSpriteRenderer.flipX=true;
                 move(-1, 0);
                 break;
             case 4: // Move up
@@ -347,11 +349,7 @@ public class movementQueue : MonoBehaviour
             case 5://horizontal
                 if (!aussieSpriteRenderer.flipX) //right
                 {
-                    shoot(3, 0, new Vector3(0, 0, -90));
-                    if (pmScript.position.x > -pmScript.boundX)
-                    {
-                        move(-1, 0);
-                    }
+                    
                     enemies = GameObject.FindGameObjectsWithTag("Enemy");
                     
                     for (int j = 0; j < enemies.Length; ++j) {  
@@ -360,17 +358,20 @@ public class movementQueue : MonoBehaviour
                                     
                             gm.enemies[j] = null;
                             Destroy(enemies[j]);
+                        } else {
+                            Debug.Log(pmScript.position.x + ", " + enemies[j].GetComponent<enemyMovement>().position.x);
                         }
+                    }
+                    shoot(3, 0, new Vector3(0, 0, -90));
+                    if (pmScript.position.x > -pmScript.boundX)
+                    {
+                        move(-1, 0);
                     }
                     
                 }
                 else // left
                 {
-                    shoot(-3, 0, new Vector3(0, 0, 90));
-                    if (pmScript.position.x < pmScript.boundX - 1)
-                    {
-                        move(1, 0);
-                    }
+                    
                     enemies = GameObject.FindGameObjectsWithTag("Enemy");
                     
                     for (int j = 0; j < enemies.Length; ++j) {  
@@ -382,6 +383,11 @@ public class movementQueue : MonoBehaviour
                             gm.enemies[j] = null;
                             Destroy(enemies[j]);
                         }
+                    }
+                    shoot(-3, 0, new Vector3(0, 0, 90));
+                    if (pmScript.position.x < pmScript.boundX - 1)
+                    {
+                        move(1, 0);
                     }
                 }
                 break;
