@@ -336,7 +336,7 @@ public class movementQueue : MonoBehaviour
 
                 break;
             case 6: //shoot down
-                //setAussieAnim(2);
+                setAussieAnim(2);
 
                 break;
             case 7: //shoot left
