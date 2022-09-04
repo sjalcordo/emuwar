@@ -18,6 +18,7 @@ public class enemyMovement : MonoBehaviour
     public Vector2 target;
 
     public GameObject[] enemies;
+    public GameManager gm;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class enemyMovement : MonoBehaviour
         target = playerScript.getPosition();
         
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         //initialize queue array
     }
@@ -118,6 +120,12 @@ public class enemyMovement : MonoBehaviour
                     }
                 }
             }
+            foreach (Vector2 wall in gm.getWalls()) {
+                if (wall.x == position.x + x && wall.y == position.y + y) {
+                    obstacle = true;
+                }                
+            }
+
             if (!obstacle) {
                 position = new Vector2(position.x + x, position.y + y);
             }
