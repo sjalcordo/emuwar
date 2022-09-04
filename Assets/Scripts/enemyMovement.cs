@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemyMovement : MonoBehaviour
 {
-    int type = 1;
+    public int type = 1;
     public Vector2 position = new Vector2(0,0);
     public Vector3 offset = new Vector3(2.35f, 0, 0);
     public int boundX;
