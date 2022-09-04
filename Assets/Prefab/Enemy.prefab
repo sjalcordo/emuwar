@@ -107,8 +107,9 @@ MonoBehaviour:
   boundY: 2
   projX: 0
   projY: 0
-  hit1: {fileID: 0}
-  hit2: {fileID: 0}
+  hit1: {fileID: 8300000, guid: f6cf03a54e6b409478a34c02d2d5cf97, type: 3}
+  hit2: {fileID: 8300000, guid: 094c7f98039159f45be899de7b27aa99, type: 3}
+  source: {fileID: 0}
   Laser: {fileID: 8380539632330724754, guid: bf29fb43cb6392241bae3d125dcaf789, type: 3}
   playerScript: {fileID: 0}
   queue: 000000000000000000000000

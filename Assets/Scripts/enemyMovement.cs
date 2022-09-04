@@ -28,6 +28,10 @@ public class enemyMovement : MonoBehaviour
     public GameObject[] enemies;
     public GameManager gm;
 
+    //sounds
+    public AudioSource[] emuAttackSounds = new AudioSource[2];
+    //0 is melee, 1 is laser
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +45,9 @@ public class enemyMovement : MonoBehaviour
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         source = GetComponent<AudioSource>();
         takeTurn();
+
+        emuAttackSounds[0] = GameObject.Find("emu click").GetComponent<AudioSource>();
+        emuAttackSounds[1] = GameObject.Find("emu laser").GetComponent<AudioSource>();
 
         //initialize queue array
     }
@@ -198,6 +205,7 @@ public class enemyMovement : MonoBehaviour
                 {
                     Debug.Log("Horiz shot from " + position + " to " + playerPos);
                     playerMovement a = playerScript.GetComponent<playerMovement>();
+                    emuAttackSounds[0].Play();
                     a.damagePlayer();
                 }
             }
@@ -209,6 +217,7 @@ public class enemyMovement : MonoBehaviour
                 {
                     Debug.Log("Vert shot from " + position + " to " + playerPos);
                     playerMovement a = playerScript.GetComponent<playerMovement>();
+                    emuAttackSounds[0].Play();
                     a.damagePlayer();
                 }
             }
@@ -225,9 +234,8 @@ public class enemyMovement : MonoBehaviour
             Debug.Log((abs(playerPos.x-position.x)==1&&abs(playerPos.y-position.y)==0) + " " + (abs(playerPos.y-position.y)==1&&(abs(playerPos.x-position.x)==0)));
             GameObject player = GameObject.Find("/Player");
             playerMovement a = player.GetComponent<playerMovement>();
-            Vector2 back = position;
+            emuAttackSounds[0].Play();
             a.damagePlayer();
-
         }
         
     }
@@ -385,7 +393,6 @@ public class enemyMovement : MonoBehaviour
         } else 
         {
         //basic queue addition
-        playerPos = playerScript.getPosition();
         target = findTarget();
         projX = position.x;
         projY = position.y;
@@ -394,8 +401,6 @@ public class enemyMovement : MonoBehaviour
         double dist = diffX+diffY;
         for(int i = 0; i<2; ++i)
         {
-            
-            Debug.Log(seed + " " + target);
             move();
         }
         if(dist>3)
@@ -417,10 +422,12 @@ public class enemyMovement : MonoBehaviour
     }
 
     void shoot(float xOffset, float yOffset, Vector3 rotation, bool isLong) {
+        
         if (isLong) {
             bullet = Instantiate(Laser, new 
                 Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), 
                 transform.rotation * Quaternion.Euler(rotation));
+            
         }
         else {
             bullet = Instantiate(Laser, new 

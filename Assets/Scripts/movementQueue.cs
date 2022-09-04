@@ -29,6 +29,12 @@ public class movementQueue : MonoBehaviour
 
     public bool isDefending;
 
+    //sounds
+    public AudioSource[] emuSounds = new AudioSource[3];
+    // 0 is attack, 1 and 2 are death
+    public AudioSource[] aussieSounds = new AudioSource[4];
+    //0 is thud, 1 and 2 are hit, 3 is death
+
     // Start is called before the first frame update
     void Start()
     {
@@ -394,6 +400,7 @@ public class movementQueue : MonoBehaviour
                             
                             gm.enemies[j] = null;
                             shoot(2.5f, 0, new Vector3(0, 0, -90), false);
+                            emuSounds[1].Play();
                             Destroy(enemies[j]);
                         }
                         else if (wall2) {
@@ -404,6 +411,7 @@ public class movementQueue : MonoBehaviour
                                     
                             gm.enemies[j] = null;
                             shoot(2.5f, 0, new Vector3(0, 0, -90), true);
+                            emuSounds[1].Play();
                             Destroy(enemies[j]);
                         } else {
                             shoot(2.5f, 0, new Vector3(0, 0, -90), true);
@@ -436,6 +444,7 @@ public class movementQueue : MonoBehaviour
                             
                             gm.enemies[j] = null;
                             shoot(-2.5f, 0, new Vector3(0, 0, 90), false);
+                            emuSounds[1].Play();
                             Destroy(enemies[j]);
                         }
                         else if (wall2) {
@@ -446,6 +455,7 @@ public class movementQueue : MonoBehaviour
                                     
                             gm.enemies[j] = null;
                             shoot(-2.5f, 0, new Vector3(0, 0, 90), true);
+                            emuSounds[1].Play();
                             Destroy(enemies[j]);
                         } else {
                             shoot(-2.5f, 0, new Vector3(0, 0, 90), true);
@@ -476,6 +486,7 @@ public class movementQueue : MonoBehaviour
                             new Vector2(pmScript.position.x, pmScript.position.y - 2))) ) {
                                     
                         gm.enemies[j] = null;
+                        emuSounds[2].Play();
                         Destroy(enemies[j]);
                     }
                     if (wall1){
@@ -485,6 +496,7 @@ public class movementQueue : MonoBehaviour
                             
                         gm.enemies[j] = null;
                         shoot(0, -2.5f, new Vector3(0, 0, 180), false);
+                        emuSounds[2].Play();
                         Destroy(enemies[j]);
                     }
                     else if (wall2) {
@@ -495,6 +507,7 @@ public class movementQueue : MonoBehaviour
                                     
                         gm.enemies[j] = null;
                         shoot(0, -2.5f, new Vector3(0, 0, 180), true);
+                        emuSounds[2].Play();
                         Destroy(enemies[j]);
                     } else {
                         shoot(0, -2.5f, new Vector3(0, 0, 180), true);
@@ -534,6 +547,7 @@ public class movementQueue : MonoBehaviour
                             
                         gm.enemies[j] = null;
                         shoot(0, 2.5f, new Vector3(0, 0, 0), false);
+                        emuSounds[2].Play();
                         Destroy(enemies[j]);
                     }
                     else if (wall2) {
@@ -544,6 +558,7 @@ public class movementQueue : MonoBehaviour
                                     
                         gm.enemies[j] = null;
                         shoot(0, 2.5f, new Vector3(0, 0, 0), true);
+                        emuSounds[2].Play();
                         Destroy(enemies[j]);
                     } else {
                         shoot(0, 2.5f, new Vector3(0, 0, 0), true);
