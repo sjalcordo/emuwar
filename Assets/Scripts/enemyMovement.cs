@@ -134,7 +134,7 @@ public class enemyMovement : MonoBehaviour
                 }
                 break;
         }
-        
+        int a;
         queue[i] = 0;
     }
 
