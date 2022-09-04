@@ -6,10 +6,12 @@ using UnityEngine;
     public Vector2 startLocation;
     public List<Vector2> enemyLocations;
     public List<Vector2> wallLocations;
-    public level(Vector2 startLocation_, List<Vector2> enemyLocations_, List<Vector2> wallLocations_) {
+    public List<Vector2> laserLocation;
+    public level(Vector2 startLocation_, List<Vector2> enemyLocations_, List<Vector2> wallLocations_, List<Vector2> laserLocation_) {
         startLocation = startLocation_;
         enemyLocations = enemyLocations_;
         wallLocations = wallLocations_;
+        laserLocation = laserLocation_;
     }
 }
 
@@ -22,10 +24,14 @@ public class levelManager : MonoBehaviour
     
     public Vector2 levelTwoStart;
     public List<Vector2> levelTwoEnemies;
+
+    public List<Vector2> levelOneLaser;
+    public List<Vector2> levelTwoLaser;
     public List<Vector2> levelTwoWallLocations;
     public playerMovement pm;
 
     public GameObject enemyPrefab;
+    public GameObject laserPrefab;
     GameObject enemy;
     public GameObject wallPrefab;
     GameObject wall;
@@ -37,8 +43,8 @@ public class levelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        levelList.Add(new level(levelOneStart, levelOneEnemies, levelOneWallLocations));
-        levelList.Add(new level(levelTwoStart, levelTwoEnemies, levelTwoWallLocations));
+        levelList.Add(new level(levelOneStart, levelOneEnemies, levelOneWallLocations, levelOneLaser));
+        levelList.Add(new level(levelTwoStart, levelTwoEnemies, levelTwoWallLocations, levelTwoLaser));
 
         pm = GameObject.Find("Player").GetComponent<playerMovement>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -69,7 +75,17 @@ public class levelManager : MonoBehaviour
         foreach (Vector2 enemyLoc in levelList[i].enemyLocations) {
             enemy = Instantiate(enemyPrefab, new Vector3(enemyLoc.x, enemyLoc.y, transform.position.z), transform.rotation);
             enemy.GetComponent<enemyMovement>().position = enemyLoc;
+            enemy.GetComponent<enemyMovement>().updateType(1);   
         }
+
+        foreach(Vector2 laserLoc in levelList[i].laserLocation)
+        {
+            enemy = Instantiate(enemyPrefab, new Vector3(laserLoc.x, laserLoc.y, transform.position.z), transform.rotation);
+            enemy.GetComponent<enemyMovement>().position = laserLoc;
+            enemy.GetComponent<enemyMovement>().updateType(2);
+        }
+
+
         foreach (Vector2 wallLoc in levelList[i].wallLocations) {
             wall = Instantiate(wallPrefab, new Vector3(wallLoc.x * 2.0f + 2.35f, wallLoc.y * 2.0f, transform.position.z), transform.rotation);
         }

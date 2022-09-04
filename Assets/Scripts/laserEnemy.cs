@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class laserEnemy : enemyMovement
 {
-    double projX;
-    double projY;
     double dir;
 
     
@@ -76,7 +74,7 @@ public class laserEnemy : enemyMovement
     //in the direction decided in FindTarget.
     public void turn (int i) {
         
-        Debug.Log("did it" + queue[i]);
+        Debug.Log("Laser! Pew Pew!" + queue[i]);
         switch(queue[i]) {   
                 // Switch case checks all of the possible actions
                 case 1: // Move right
@@ -109,6 +107,7 @@ public class laserEnemy : enemyMovement
     }
 
     public void takeTurn () {
+        Debug.Log("laser");
         playerPos = playerScript.getPosition();
         //basic queue addition
         target = findTarget();

@@ -219,15 +219,19 @@ MonoBehaviour:
   levelOneStart: {x: -4, y: 0}
   levelOneEnemies:
   - {x: 1, y: 0}
+  levelOneLaser: 
+  - {x: 2, y: 0}
   levelOneWallLocations:
   - {x: -1, y: 0}
   levelTwoStart: {x: -3, y: 0}
   levelTwoEnemies:
   - {x: 3, y: 1}
+  levelTwoLaser:
   - {x: 3, y: -1}
   levelTwoWallLocations: []
   pm: {fileID: 0}
   enemyPrefab: {fileID: 5285086469749664969, guid: 6cb982c7184ae684daa5b9f38f5398af, type: 3}
+  laserPrefab: {fileID: 9142465240938490035, guid: 8bb777da37c23ef4fac58a62057af226, type: 3}
   wallPrefab: {fileID: 209801912220060344, guid: 054fd069993480b41add0a56ecde1db7, type: 3}
   gm: {fileID: 0}
 --- !u!1 &235247641 stripped
