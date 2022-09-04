@@ -46,8 +46,8 @@ public class enemyMovement : MonoBehaviour
         source = GetComponent<AudioSource>();
         takeTurn();
 
-        emuAttackSounds[0] = GameObject.Find("emu hit 1").GetComponent<AudioSource>();
-        emuAttackSounds[0] = GameObject.Find("emu hit 2").GetComponent<AudioSource>();
+        emuAttackSounds[0] = GameObject.Find("emu click").GetComponent<AudioSource>();
+        emuAttackSounds[1] = GameObject.Find("emu laser").GetComponent<AudioSource>();
 
         //initialize queue array
     }
@@ -422,10 +422,12 @@ public class enemyMovement : MonoBehaviour
     }
 
     void shoot(float xOffset, float yOffset, Vector3 rotation, bool isLong) {
+        
         if (isLong) {
             bullet = Instantiate(Laser, new 
                 Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), 
                 transform.rotation * Quaternion.Euler(rotation));
+            
         }
         else {
             bullet = Instantiate(Laser, new 

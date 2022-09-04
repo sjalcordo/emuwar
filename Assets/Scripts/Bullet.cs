@@ -5,12 +5,15 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     //public AudioSource bulletSFX; 
-
+    public bool isLaser = false;
     // Start is called before the first frame update
     void Start()
     {
         Object.Destroy(gameObject, 0.1f);
-        GameObject.Find("GunSFX").GetComponent<AudioSource>().Play();
+        if(!isLaser)
+            GameObject.Find("GunSFX").GetComponent<AudioSource>().Play();
+        else
+            GameObject.Find("emu laser").GetComponent<AudioSource>().Play();
         //bulletSFX.Play();
     }
 
