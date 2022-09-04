@@ -278,12 +278,12 @@ public class enemyMovement : MonoBehaviour
     public Vector2 findTarget()
     {
         target.x = playerPos.x;
-            target.y = playerPos.y;
-            double diffX = playerPos.x - position.x;
-            double diffY = playerPos.y - position.y;
-            double xDir = diffX/abs(diffX);
-            double yDir = diffY/abs(diffY);
-            double dist = abs(diffX) + abs(diffY);
+        target.y = playerPos.y;
+        double diffX = playerPos.x - position.x;
+        double diffY = playerPos.y - position.y;
+        double xDir = diffX/abs(diffX);
+        double yDir = diffY/abs(diffY);
+        double dist = abs(abs(diffX) + abs(diffY));
         if(type==2)
         {
             //Finds the closer sight line to the player (either vertical or horizontal).
@@ -300,8 +300,8 @@ public class enemyMovement : MonoBehaviour
                     target.y = (float)(posy+diffY);
                 } else {
                     target.y = (float)(posy+diffY);
-                    target.x = (float)(posx - diffX);
                 }
+                return target;
             }
             dir = 1+yDir;
             if(dist<3)
@@ -309,7 +309,6 @@ public class enemyMovement : MonoBehaviour
                         target.x = (float)(posx+diffX);
                 } else {
                     target.x = (float)(posx + diffX);
-                    target.y = (float)(posy - diffY);
                 }
             return target;
         }
@@ -347,6 +346,7 @@ public class enemyMovement : MonoBehaviour
             playerPos = playerScript.getPosition();
         //basic queue addition
         target = findTarget();
+        Debug.Log(target);
         double shotDir = dir;
         projX = position.x;
         projY = position.y;
@@ -355,7 +355,7 @@ public class enemyMovement : MonoBehaviour
         double dist = diffX+diffY;
         for(int i = 0; i<2; ++i)
         {
-            if(dist>0)
+            if(abs(dist)>0)
             {
                 move();
             }
