@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
             }
         } 
         else {
-            //Destroy(player);
+            Destroy(player);
         }
         playerMQ.setQueuePos(0);
         playerMQ.queueStop();

@@ -23,6 +23,7 @@ public class enemyMovement : MonoBehaviour
     void Start()
     {
         queuePos = 0;
+        playerScript = GameObject.Find("Player").GetComponent<playerMovement>();
         playerPos = playerScript.getPosition();
         
         target = playerScript.getPosition();
