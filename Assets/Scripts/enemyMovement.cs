@@ -61,7 +61,9 @@ public class enemyMovement : MonoBehaviour
         }
         */
 
-
+        if(type==2)
+        {
+        }
 
         transform.position = new Vector3(position.x * 2f, position.y * 2f, transform.position.z) + offset;
     }
@@ -182,7 +184,7 @@ public class enemyMovement : MonoBehaviour
         playerPos = playerScript.getPosition();
         double isX = dir%2;
         double isY = abs(dir%2-1);
-        shoot((float)((2.5*(1-dir))*isY), (float)(2.5*(2-dir)*isX), new Vector3(0, 0, (float)(90*(dir))), true);
+        shoot((float)((2.5*(1-dir))*-isY), (float)(2.5*(2-dir)*-isX), new Vector3(0, 0, (float)(90*(dir))), true);
         if(dir%2==0)
         {
             //horizontal
@@ -296,8 +298,9 @@ public class enemyMovement : MonoBehaviour
             double posy = position.y;
             if(abs(diffX)<abs(diffY))
             {
+                Debug.Log("I'm here");
                 seed = .8;
-                dir = 2+xDir;
+                dir = 2+yDir;
                 if(dist<3)
                 {
                     target.y = (float)(posy+diffY);
@@ -306,8 +309,9 @@ public class enemyMovement : MonoBehaviour
                 }
                 return target;
             }
+            Debug.Log("Actually here");
             seed = -.8;
-            dir = 1+yDir;
+            dir = 1+xDir;
             if(dist<3)
                 {
                         target.x = (float)(posx+diffX);
@@ -350,7 +354,7 @@ public class enemyMovement : MonoBehaviour
             playerPos = playerScript.getPosition();
         //basic queue addition
         target = findTarget();
-        Debug.Log(target);
+        Debug.Log(target + " " + dir);
         double shotDir = dir;
         projX = position.x;
         projY = position.y;
