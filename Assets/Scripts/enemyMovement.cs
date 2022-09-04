@@ -12,9 +12,9 @@ public class enemyMovement : MonoBehaviour
     public double projX;
     public double projY;
 
-    public AudioClip hit1 = new AudioClip();
-    public AudioClip hit2 = new AudioClip();
-    public AudioSource source = GetComponent<AudioSource>();
+    public AudioClip hit1;
+    public AudioClip hit2;
+    public AudioSource source;
     public GameObject Laser;
     private GameObject bullet;
     public playerMovement playerScript;
@@ -39,6 +39,7 @@ public class enemyMovement : MonoBehaviour
         
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        source = GetComponent<AudioSource>();
         takeTurn();
 
         //initialize queue array
