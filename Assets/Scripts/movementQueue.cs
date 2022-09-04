@@ -8,7 +8,8 @@ public class movementQueue : MonoBehaviour
     public int[] queue;
     public int queuePos;
     public playerMovement pmScript;
-    public GameObject bulletPrefab;
+    public GameObject bulletLongPrefab;
+    public GameObject bulletShortPrefab;
     private GameObject bullet;
     public bool notMoving;
 
@@ -121,10 +122,18 @@ public class movementQueue : MonoBehaviour
         queueArray[queuePos].GetComponent<SpriteRenderer>().sprite = sprites[spriteNum];
     }
 
-    void shoot(int xOffset, int yOffset, Vector3 rotation) {
-        bullet = Instantiate(bulletPrefab, new 
-            Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), 
-            transform.rotation * Quaternion.Euler(rotation));
+    void shoot(float xOffset, float yOffset, Vector3 rotation, bool isLong) {
+        if (isLong) {
+            bullet = Instantiate(bulletLongPrefab, new 
+                Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), 
+                transform.rotation * Quaternion.Euler(rotation));
+        }
+        else {
+            bullet = Instantiate(bulletShortPrefab, new 
+                Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), 
+                transform.rotation * Quaternion.Euler(rotation));
+        }
+        
     }
 
     void move(int x, int y) {
@@ -384,18 +393,23 @@ public class movementQueue : MonoBehaviour
                         else if (wall2 && (enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x + 1, pmScript.position.y)) ) {
                             
                             gm.enemies[j] = null;
+                            shoot(2.5f, 0, new Vector3(0, 0, -90), false);
                             Destroy(enemies[j]);
+                        }
+                        else if (wall2) {
+                            shoot(2.5f, 0, new Vector3(0, 0, -90), false);
                         }
                         else if ((enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x + 1, pmScript.position.y) ||
                             (enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x + 2, pmScript.position.y))) ) {
                                     
                             gm.enemies[j] = null;
+                            shoot(2.5f, 0, new Vector3(0, 0, -90), true);
                             Destroy(enemies[j]);
                         } else {
+                            shoot(2.5f, 0, new Vector3(0, 0, -90), true);
                             Debug.Log(pmScript.position.x + ", " + enemies[j].GetComponent<enemyMovement>().position.x);
                         }
                     }
-                    shoot(3, 0, new Vector3(0, 0, -90));
                     if (pmScript.position.x > -pmScript.boundX)
                     {
                         move(-1, 0);
@@ -415,16 +429,29 @@ public class movementQueue : MonoBehaviour
                     enemies = GameObject.FindGameObjectsWithTag("Enemy");
                     
                     for (int j = 0; j < enemies.Length; ++j) {  
-                        if ((enemies[j].GetComponent<enemyMovement>().position == 
-                                new Vector2(pmScript.position.x - 1, pmScript.position.y) ||
-                            (enemies[j].GetComponent<enemyMovement>().position == 
-                                new Vector2(pmScript.position.x - 2, pmScript.position.y))) ) {
-                                    
+                        if (wall1){
+
+                        }
+                        else if (wall2 && (enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x - 1, pmScript.position.y)) ) {
+                            
                             gm.enemies[j] = null;
+                            shoot(-2.5f, 0, new Vector3(0, 0, 90), false);
                             Destroy(enemies[j]);
                         }
+                        else if (wall2) {
+                            shoot(-2.5f, 0, new Vector3(0, 0, 90), false);
+                        }
+                        else if ((enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x - 1, pmScript.position.y) ||
+                            (enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x - 2, pmScript.position.y))) ) {
+                                    
+                            gm.enemies[j] = null;
+                            shoot(-2.5f, 0, new Vector3(0, 0, 90), true);
+                            Destroy(enemies[j]);
+                        } else {
+                            shoot(-2.5f, 0, new Vector3(0, 0, 90), true);
+                            Debug.Log(pmScript.position.x + ", " + enemies[j].GetComponent<enemyMovement>().position.x);
+                        }
                     }
-                    shoot(-3, 0, new Vector3(0, 0, 90));
                     if (pmScript.position.x < pmScript.boundX - 1)
                     {
                         move(1, 0);
@@ -451,8 +478,29 @@ public class movementQueue : MonoBehaviour
                         gm.enemies[j] = null;
                         Destroy(enemies[j]);
                     }
+                    if (wall1){
+
+                    }
+                    else if (wall2 && (enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x, pmScript.position.y - 1)) ) {
+                            
+                        gm.enemies[j] = null;
+                        shoot(0, -2.5f, new Vector3(0, 0, 180), false);
+                        Destroy(enemies[j]);
+                    }
+                    else if (wall2) {
+                        shoot(0, -2.5f, new Vector3(0, 0, 180), false);
+                    }
+                    else if ((enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x, pmScript.position.y - 1) ||
+                        (enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x, pmScript.position.y - 2))) ) {
+                                    
+                        gm.enemies[j] = null;
+                        shoot(0, -2.5f, new Vector3(0, 0, 180), true);
+                        Destroy(enemies[j]);
+                    } else {
+                        shoot(0, -2.5f, new Vector3(0, 0, 180), true);
+                        Debug.Log(pmScript.position.x + ", " + enemies[j].GetComponent<enemyMovement>().position.x);
+                    }
                 }
-                shoot(0, -0, new Vector3(0, 0, 180));
                 if (pmScript.position.x < pmScript.boundY)
                 {
                     move(0, 1);
@@ -479,16 +527,29 @@ public class movementQueue : MonoBehaviour
                 enemies = GameObject.FindGameObjectsWithTag("Enemy");
                     
                 for (int j = 0; j < enemies.Length; ++j) {  
-                    if ((enemies[j].GetComponent<enemyMovement>().position == 
-                            new Vector2(pmScript.position.x, pmScript.position.y + 1) ||
-                        (enemies[j].GetComponent<enemyMovement>().position == 
-                            new Vector2(pmScript.position.x, pmScript.position.y + 2))) ) {
-                                    
+                    if (wall1){
+
+                    }
+                    else if (wall2 && (enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x, pmScript.position.y + 1)) ) {
+                            
                         gm.enemies[j] = null;
+                        shoot(0, 2.5f, new Vector3(0, 0, 0), false);
                         Destroy(enemies[j]);
                     }
+                    else if (wall2) {
+                        shoot(0, 2.5f, new Vector3(0, 0, 0), false);
+                    }
+                    else if ((enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x, pmScript.position.y + 1) ||
+                        (enemies[j].GetComponent<enemyMovement>().position == new Vector2(pmScript.position.x, pmScript.position.y + 2))) ) {
+                                    
+                        gm.enemies[j] = null;
+                        shoot(0, 2.5f, new Vector3(0, 0, 0), true);
+                        Destroy(enemies[j]);
+                    } else {
+                        shoot(0, 2.5f, new Vector3(0, 0, 0), true);
+                        Debug.Log(pmScript.position.x + ", " + enemies[j].GetComponent<enemyMovement>().position.x);
+                    }
                 }
-                shoot(0, 3, new Vector3(0, 0, 0));
                 if (pmScript.position.y > -pmScript.boundY)
                 {
                     move(0, -1);
