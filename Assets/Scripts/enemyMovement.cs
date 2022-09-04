@@ -12,7 +12,9 @@ public class enemyMovement : MonoBehaviour
     public double projX;
     public double projY;
 
-    
+    public AudioClip hit1;
+    public AudioClip hit2;
+    public AudioSource source;
     public GameObject Laser;
     private GameObject bullet;
     public playerMovement playerScript;
@@ -41,6 +43,7 @@ public class enemyMovement : MonoBehaviour
         
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        source = GetComponent<AudioSource>();
         takeTurn();
 
         emuAttackSounds[0] = GameObject.Find("emu hit 1").GetComponent<AudioSource>();
