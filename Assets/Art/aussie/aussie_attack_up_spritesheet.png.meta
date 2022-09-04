@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c4313c2248f8cf24e8ede75e58a584b0
+guid: 4bd380ab7e1e59143b9ce8d454a59e9e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 512
+  spritePixelsToUnits: 216
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -116,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: emu hurt sprite sheet_0
+      name: aussie_attack_up_spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1000
-        height: 1000
+        width: 216
+        height: 216
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00946f8e67d3e2c48ad94e29d959a4bc
-      internalID: -96781885
+      spriteID: 53334f35c904ce74284128f00359efad
+      internalID: -74940673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: emu hurt sprite sheet_1
+      name: aussie_attack_up_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 1000
+        x: 216
         y: 0
-        width: 1000
-        height: 1000
+        width: 216
+        height: 216
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,20 +151,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08a5c3ff9b044c540949a9abc21253b6
-      internalID: -1100771619
+      spriteID: 8b4fa7878599fa34396e779362f1ea41
+      internalID: 783234769
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: emu hurt sprite sheet_2
+      name: aussie_attack_up_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 2000
+        x: 432
         y: 0
-        width: 1000
-        height: 1000
+        width: 216
+        height: 216
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,20 +172,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e69857c3f4723a7449333881e2d00aba
-      internalID: -1535380365
+      spriteID: b292629bfa0d9b548ae5dcf567aa91db
+      internalID: 1353707518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: emu hurt sprite sheet_3
+      name: aussie_attack_up_spritesheet_3
       rect:
         serializedVersion: 2
-        x: 3000
+        x: 648
         y: 0
-        width: 1000
-        height: 1000
+        width: 216
+        height: 216
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +193,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a85e65434a7cbb643878697086c5f636
-      internalID: -259870239
+      spriteID: c08700942c6282b498bc3e46eb16966d
+      internalID: -469612227
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: emu hurt sprite sheet_4
+      name: aussie_attack_up_spritesheet_4
       rect:
         serializedVersion: 2
-        x: 4000
+        x: 864
         y: 0
-        width: 1000
-        height: 1000
+        width: 216
+        height: 216
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,20 +214,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d80bc42223e3cb944bc005f37fedc4c4
-      internalID: -390843176
+      spriteID: 34b7ee3f65be4df4988d7b2a2b85244f
+      internalID: 1203870166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: emu hurt sprite sheet_5
+      name: aussie_attack_up_spritesheet_5
       rect:
         serializedVersion: 2
-        x: 5000
+        x: 1080
         y: 0
-        width: 1000
-        height: 1000
+        width: 216
+        height: 216
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,8 +235,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b8e05e5339b91645aa198aa3223b46f
-      internalID: -1839598547
+      spriteID: fc662dd260a261f47af56c57cf020710
+      internalID: 703572434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aussie_attack_up_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 0
+        width: 216
+        height: 216
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8e37605edd1d9d40aa98735e5b6fb56
+      internalID: 1469774171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aussie_attack_up_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 1512
+        y: 0
+        width: 216
+        height: 216
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4df279e06ea0c9c45b08de393477ce3e
+      internalID: -133008640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aussie_attack_up_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 0
+        width: 216
+        height: 216
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 158094a97c8f48040a36685d0629ce5f
+      internalID: -1652417814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aussie_attack_up_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 1944
+        y: 0
+        width: 216
+        height: 216
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2878b7b4b356bf443bfe304fdab8bc84
+      internalID: -755480533
       vertices: []
       indices: 
       edges: []
@@ -252,12 +336,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      emu hurt sprite sheet_3: -259870239
-      emu hurt sprite sheet_0: -96781885
-      emu hurt sprite sheet_2: -1535380365
-      emu hurt sprite sheet_4: -390843176
-      emu hurt sprite sheet_5: -1839598547
-      emu hurt sprite sheet_1: -1100771619
+      aussie_attack_up_spritesheet_3: -469612227
+      aussie_attack_up_spritesheet_8: -1652417814
+      aussie_attack_up_spritesheet_4: 1203870166
+      aussie_attack_up_spritesheet_5: 703572434
+      aussie_attack_up_spritesheet_1: 783234769
+      aussie_attack_up_spritesheet_9: -755480533
+      aussie_attack_up_spritesheet_0: -74940673
+      aussie_attack_up_spritesheet_6: 1469774171
+      aussie_attack_up_spritesheet_2: 1353707518
+      aussie_attack_up_spritesheet_7: -133008640
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

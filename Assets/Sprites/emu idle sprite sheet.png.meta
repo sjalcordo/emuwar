@@ -100,6 +100,21 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< Updated upstream
+=======
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+>>>>>>> Stashed changes
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -118,8 +133,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< Updated upstream
       spriteID: e534ca67b9697ae4793cd99212f92d59
       internalID: -343133705
+=======
+      spriteID: dc94f0a89a86f204eac3d0858ca2af53
+      internalID: -1692742434
+>>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
@@ -139,8 +159,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< Updated upstream
       spriteID: c2d681f5283d349429f744b3909e0830
       internalID: -1914310995
+=======
+      spriteID: 9577c5a6f33c8f544866b3e96d1ab62c
+      internalID: -1710231000
+>>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
@@ -160,8 +185,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< Updated upstream
       spriteID: 4b12e2a12d072be4cbc8ab4ba002d7f2
       internalID: -249539120
+=======
+      spriteID: 50dc401a3fc434d418390dd8fe41bb43
+      internalID: -1661941792
+>>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
@@ -181,8 +211,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< Updated upstream
       spriteID: 8f3927cb70a972849a6f664a02b49250
       internalID: 1221821906
+=======
+      spriteID: 1b3719a4192582844979506fc721e01a
+      internalID: -466456012
+>>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
@@ -191,17 +226,24 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+<<<<<<< Updated upstream
       emu idle sprite sheet_0: -343133705
       emu idle sprite sheet_2: -249539120
       emu idle sprite sheet_3: 1221821906
       emu idle sprite sheet_1: -1914310995
+=======
+      emu idle sprite sheet_0: -1692742434
+      emu idle sprite sheet_2: -1661941792
+      emu idle sprite sheet_3: -466456012
+      emu idle sprite sheet_1: -1710231000
+>>>>>>> Stashed changes
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
