@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class enemyMovement : MonoBehaviour
 {
+    int type = 1;
     public Vector2 position = new Vector2(0,0);
     public Vector3 offset = new Vector3(2.35f, 0, 0);
     public int boundX;
     public int boundY;
-    double projX;
-    double projY;
+    public double projX;
+    public double projY;
 
     public playerMovement playerScript;
     public int[] queue = new int[3];
@@ -61,6 +62,10 @@ public class enemyMovement : MonoBehaviour
         transform.position = new Vector3(position.x * 2f, position.y * 2f, transform.position.z) + offset;
     }
 
+    public void updateType(int type_)
+    {
+        type = type_;
+    }
     //written because Unity doesnt like it when I try to abs doubles
     public double abs(double a)
     {
@@ -74,26 +79,62 @@ public class enemyMovement : MonoBehaviour
 
     //Check which turn to take and then do it. Only contains movement currently.
     public void turn (int i) {
-        
-        Debug.Log("did it" + queue[i]);
-        switch(queue[i]) {   
-                // Switch case checks all of the possible actions
-                case 1: // Move right
-                    step(1, 0);
-                    break;
-                case 2: // Move down
-                    step(0, -1);
-                    break;
-                case 3: // Move left
-                    step(-1, 0);
-                    break;
-                case 4: // Move up
-                    step(0, 1);
-                    break;
-                case 5:
-                    attack();
-                    break;
+        switch(type)
+        {
+            case 1:    
+                Debug.Log("did it" + queue[i]);
+                switch(queue[i]) {   
+                        // Switch case checks all of the possible actions
+                        case 1: // Move right
+                            step(1, 0);
+                            break;
+                        case 2: // Move down
+                            step(0, -1);
+                            break;
+                        case 3: // Move left
+                            step(-1, 0);
+                            break;
+                        case 4: // Move up
+                            step(0, 1);
+                            break;
+                        case 5:
+                            attack();
+                            break;
+                }
+                break;
+            case 2:
+                Debug.Log("Laser! Pew Pew!" + queue[i]);
+                switch(queue[i]) {   
+                        // Switch case checks all of the possible actions
+                        case 1: // Move right
+                            step(1, 0);
+                            break;
+                        case 2: // Move down
+                            step(0, -1);
+                            break;
+                        case 3: // Move left
+                            step(-1, 0);
+                            break;
+                        case 4: // Move up
+                            step(0, 1);
+                            break;
+                        case 5:
+                            attack(0);
+                            break;
+                        case 6:
+                            attack(1);
+                            break;
+                        case 7:
+                            attack(2);
+                            break;
+                        case 8:
+                            attack(3);
+                            break;
+
+                }
+                break;
         }
+        
         queue[i] = 0;
     }
 
@@ -132,6 +173,33 @@ public class enemyMovement : MonoBehaviour
             }
 
         }
+    }
+
+    public void attack(double dir)
+    {
+        if(dir%2==0)
+        {
+            //horizontal
+            if(playerPos.y==position.y)
+            {
+                if(abs(position.x-playerPos.x)<=3)
+                {
+                    playerMovement a = playerScript.GetComponent<playerMovement>();
+                    a.damagePlayer();
+                }
+            }
+        } else {
+            //vertical
+            if(playerPos.x==position.x)
+            {
+                if(abs(position.y-playerPos.y)<=3)
+                {
+                    playerMovement a = playerScript.GetComponent<playerMovement>();
+                    a.damagePlayer();
+                }
+            }
+        }
+        
     }
 
     public void attack()
