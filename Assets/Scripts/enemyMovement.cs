@@ -243,12 +243,13 @@ public class enemyMovement : MonoBehaviour
         {
             move();
         }
-        if(dist>5)
+        if(dist>3)
         {
             move();
         } else if(dist > 1)
         {
-           queue[queuePos] = 6;
+           //queue[queuePos] = 6;
+           move();
         } else {
            queue[queuePos] = 5;
         }

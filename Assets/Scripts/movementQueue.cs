@@ -26,6 +26,8 @@ public class movementQueue : MonoBehaviour
 
     public GameManager gm;
 
+    public bool isDefending;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +90,11 @@ public class movementQueue : MonoBehaviour
             else if (Input.GetKeyDown("i")) {
                 queue[queuePos] = 8;
                 switchSprite(queuePos, 8);
+                ++queuePos;
+            }
+            else if (Input.GetButtonDown("Fire1")) {
+                queue[queuePos] = 9;
+                switchSprite(queuePos, 9);
                 ++queuePos;
             }
         }
@@ -248,6 +255,7 @@ public class movementQueue : MonoBehaviour
 
     public void queueStep(int i) {
         //GameObject emu;
+        isDefending = false;
         switch(queue[i]) {
             case 0:
                 break;   
@@ -338,6 +346,9 @@ public class movementQueue : MonoBehaviour
                 break;
             case 8: //shoot up
                 setAussieAnim(3);
+                break;
+            case 9:
+                isDefending = true;
                 break;
         }
         queue[i] = 0;

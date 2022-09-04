@@ -43,8 +43,10 @@ public class playerMovement : MonoBehaviour
 
     public int damagePlayer()
     {
-        health--;
-        Debug.Log("Ouch! " + health);
+        if (!GetComponent<movementQueue>().isDefending){
+            health--;
+            Debug.Log("Ouch! " + health);
+        }
         return health;
     }
     
