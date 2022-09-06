@@ -119,6 +119,8 @@ MonoBehaviour:
   enemies: []
   gm: {fileID: 0}
   emuAnimator: {fileID: 5285086469749664973}
+  currentEmuAnim: 0
+  emuSpriteRenderer: {fileID: 5285086469749664975}
   emuAttackSounds:
   - {fileID: 0}
   - {fileID: 0}

@@ -87,10 +87,12 @@ public class GameManager : MonoBehaviour
 
     IEnumerator die()
     {
-            AudioSource.PlayClipAtPoint (deathClip, transform.position);
-            yield return new WaitForSeconds(3);
-            Destroy(player);
-            SceneManager.LoadScene(0);
+        Destroy(GameObject.Find("bgm"));
+        player.transform.GetChild(0).gameObject.SetActive(true);
+        AudioSource.PlayClipAtPoint (deathClip, transform.position);
+        yield return new WaitForSeconds(3);
+        Destroy(player);
+        SceneManager.LoadScene(0);
 
     }
 

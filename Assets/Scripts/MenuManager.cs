@@ -9,7 +9,10 @@ public class MenuManager : MonoBehaviour
 
     public AudioSource bkgdMusic;
     private static AudioSource _instance;
-
+    public GameObject controls;
+    public bool firstPress = false;
+    public GameObject startButton;
+    public AudioSource startSound;
 
     // Start is called before the first frame update
     void Start()
@@ -27,10 +30,17 @@ public class MenuManager : MonoBehaviour
         if (Input.GetButtonDown("Submit") || Input.GetButtonDown("Jump"))
         {
             MenuButtons(0);
+            startSound.Play();
         }
         else if (Input.GetButtonDown("Cancel"))
         {
-            MenuButtons(1);
+            if(firstPress)
+            {
+                controls.SetActive(false);
+                startButton.SetActive(false);
+            }
+            else
+                MenuButtons(1);
         }
     }
 
@@ -39,7 +49,17 @@ public class MenuManager : MonoBehaviour
         switch (i)
         {
             case 0: //start
-                StartCoroutine("StartSequence");
+                
+                controls.SetActive(true);
+                startButton.SetActive(true);
+                if (firstPress)
+                {
+                    StartCoroutine("StartSequence");
+                }
+                else
+                {
+                    firstPress = true;
+                }
                 break;
             case 1: // quit
                 Destroy(GameObject.Find("bgm"));

@@ -30,6 +30,7 @@ public class enemyMovement : MonoBehaviour
 
     public Animator emuAnimator;
     public int currentEmuAnim;
+    public SpriteRenderer emuSpriteRenderer;
 
     //sounds
     public AudioSource[] emuAttackSounds = new AudioSource[2];
@@ -109,12 +110,14 @@ public class enemyMovement : MonoBehaviour
                         // Switch case checks all of the possible actions
                         case 1: // Move right
                             step(1, 0);
+                            emuSpriteRenderer.flipX = true;
                             break;
                         case 2: // Move down
                             step(0, -1);
                             break;
                         case 3: // Move left
-                            step(-1, 0);
+                        emuSpriteRenderer.flipX = false;
+                        step(-1, 0);
                             break;
                         case 4: // Move up
                             step(0, 1);
@@ -128,13 +131,15 @@ public class enemyMovement : MonoBehaviour
                 switch(queue[i]) {   
                         // Switch case checks all of the possible actions
                         case 1: // Move right
-                            step(1, 0);
+                        emuSpriteRenderer.flipX = true;
+                        step(1, 0);
                             break;
                         case 2: // Move down
                             step(0, -1);
                             break;
                         case 3: // Move left
-                            step(-1, 0);
+                        emuSpriteRenderer.flipX = false;
+                        step(-1, 0);
                             break;
                         case 4: // Move up
                             step(0, 1);
@@ -197,7 +202,8 @@ public class enemyMovement : MonoBehaviour
 
     public void switchEmuAnim(int i)
     {
-        currentEmuAnim = i;
+        if(currentEmuAnim != 2)
+            currentEmuAnim = i;
     }
 
     public void attack(double dir)
@@ -216,6 +222,15 @@ public class enemyMovement : MonoBehaviour
                     Debug.Log("Horiz shot from " + position + " to " + playerPos);
                     playerMovement a = playerScript.GetComponent<playerMovement>();
                     emuAttackSounds[0].Play();
+                    if(position.x - playerPos.x > 0)
+                    {
+                        emuSpriteRenderer.flipX = false;
+                    }
+                    else if (position.x - playerPos.x < 0)
+                    {
+                        emuSpriteRenderer.flipX = true;
+                    }
+
                     switchEmuAnim(1);
                     
                     a.damagePlayer();
@@ -251,7 +266,15 @@ public class enemyMovement : MonoBehaviour
             emuAttackSounds[0].Play();
             switchEmuAnim(1);
             a.damagePlayer();
-            
+            if (position.x - playerPos.x > 0)
+            {
+                emuSpriteRenderer.flipX = false;
+            }
+            else if (position.x - playerPos.x < 0)
+            {
+                emuSpriteRenderer.flipX = true;
+            }
+
         }
         
     }

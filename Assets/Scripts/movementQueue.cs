@@ -403,7 +403,7 @@ public class movementQueue : MonoBehaviour
                             shoot(2.5f, 0, new Vector3(0, 0, -90), false);
                             emuSounds[1].Play();
 
-                            EmuDeath(j);
+                            StartCoroutine(EmuDeath(j));
                         }
                         else if (wall2) {
                             shoot(2.5f, 0, new Vector3(0, 0, -90), false);
@@ -414,7 +414,7 @@ public class movementQueue : MonoBehaviour
                             gm.enemies[j] = null;
                             shoot(2.5f, 0, new Vector3(0, 0, -90), true);
                             emuSounds[1].Play();
-                            EmuDeath(j);
+                            StartCoroutine(EmuDeath(j));
                         } else {
                             shoot(2.5f, 0, new Vector3(0, 0, -90), true);
                             Debug.Log(pmScript.position.x + ", " + enemies[j].GetComponent<enemyMovement>().position.x);
@@ -447,7 +447,7 @@ public class movementQueue : MonoBehaviour
                             gm.enemies[j] = null;
                             shoot(-2.5f, 0, new Vector3(0, 0, 90), false);
                             emuSounds[1].Play();
-                            EmuDeath(j);
+                            StartCoroutine(EmuDeath(j));
                         }
                         else if (wall2) {
                             shoot(-2.5f, 0, new Vector3(0, 0, 90), false);
@@ -458,7 +458,7 @@ public class movementQueue : MonoBehaviour
                             gm.enemies[j] = null;
                             shoot(-2.5f, 0, new Vector3(0, 0, 90), true);
                             emuSounds[1].Play();
-                            EmuDeath(j);
+                            StartCoroutine(EmuDeath(j));
                         } else {
                             shoot(-2.5f, 0, new Vector3(0, 0, 90), true);
                             Debug.Log(pmScript.position.x + ", " + enemies[j].GetComponent<enemyMovement>().position.x);
@@ -489,8 +489,9 @@ public class movementQueue : MonoBehaviour
                                     
                         gm.enemies[j] = null;
                         emuSounds[2].Play();
-                        emuAnimator.SetInteger("emuAnim", 2);
-                        EmuDeath(j);
+                        enemies[j].GetComponent<enemyMovement>().switchEmuAnim(2);
+                        
+                        StartCoroutine(EmuDeath(j));
 
                     }
                     if (wall1){
@@ -501,8 +502,9 @@ public class movementQueue : MonoBehaviour
                         gm.enemies[j] = null;
                         shoot(0, -2.5f, new Vector3(0, 0, 180), false);
                         emuSounds[2].Play();
-                        emuAnimator.SetInteger("emuAnim", 2);
-                        EmuDeath(j);
+                        enemies[j].GetComponent<enemyMovement>().switchEmuAnim(2);
+                        StartCoroutine(EmuDeath(j));
+                        
                     }
                     else if (wall2) {
                         shoot(0, -2.5f, new Vector3(0, 0, 180), false);
@@ -513,8 +515,8 @@ public class movementQueue : MonoBehaviour
                         gm.enemies[j] = null;
                         shoot(0, -2.5f, new Vector3(0, 0, 180), true);
                         emuSounds[2].Play();
-                        emuAnimator.SetInteger("emuAnim", 2);
-                        EmuDeath(j);
+                        enemies[j].GetComponent<enemyMovement>().switchEmuAnim(2);
+                        StartCoroutine(EmuDeath(j));
                     } else {
                         shoot(0, -2.5f, new Vector3(0, 0, 180), true);
                         Debug.Log(pmScript.position.x + ", " + enemies[j].GetComponent<enemyMovement>().position.x);
@@ -554,8 +556,8 @@ public class movementQueue : MonoBehaviour
                         gm.enemies[j] = null;
                         shoot(0, 2.5f, new Vector3(0, 0, 0), false);
                         emuSounds[2].Play();
-                        emuAnimator.SetInteger("emuAnim", 2);
-                        EmuDeath(j);
+                        enemies[j].GetComponent<enemyMovement>().switchEmuAnim(2);
+                        StartCoroutine(EmuDeath(j));
                     }
                     else if (wall2) {
                         shoot(0, 2.5f, new Vector3(0, 0, 0), false);
@@ -566,8 +568,8 @@ public class movementQueue : MonoBehaviour
                         gm.enemies[j] = null;
                         shoot(0, 2.5f, new Vector3(0, 0, 0), true);
                         emuSounds[2].Play();
-                        emuAnimator.SetInteger("emuAnim", 2);
-                        EmuDeath(j);
+                        enemies[j].GetComponent<enemyMovement>().switchEmuAnim(2);
+                        StartCoroutine(EmuDeath(j));
                     } else {
                         shoot(0, 2.5f, new Vector3(0, 0, 0), true);
                         Debug.Log(pmScript.position.x + ", " + enemies[j].GetComponent<enemyMovement>().position.x);
@@ -585,7 +587,7 @@ public class movementQueue : MonoBehaviour
 
     IEnumerator EmuDeath(int i)
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(.6f);
         Destroy(enemies[i]);
     }
 
