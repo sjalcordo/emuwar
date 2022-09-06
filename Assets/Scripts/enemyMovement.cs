@@ -29,6 +29,7 @@ public class enemyMovement : MonoBehaviour
     public GameManager gm;
 
     public Animator emuAnimator;
+    public int currentEmuAnim;
 
     //sounds
     public AudioSource[] emuAttackSounds = new AudioSource[2];
@@ -79,6 +80,8 @@ public class enemyMovement : MonoBehaviour
         }
 
         transform.position = new Vector3(position.x * 2f, position.y * 2f, transform.position.z) + offset;
+
+        emuAnimator.SetInteger("emuAni", currentEmuAnim);
     }
 
     public void updateType(int type_)
@@ -192,6 +195,11 @@ public class enemyMovement : MonoBehaviour
         }
     }
 
+    public void switchEmuAnim(int i)
+    {
+        currentEmuAnim = i;
+    }
+
     public void attack(double dir)
     {
         playerPos = playerScript.getPosition();
@@ -208,7 +216,7 @@ public class enemyMovement : MonoBehaviour
                     Debug.Log("Horiz shot from " + position + " to " + playerPos);
                     playerMovement a = playerScript.GetComponent<playerMovement>();
                     emuAttackSounds[0].Play();
-                    //emuAnimator.Play("emuattack");
+                    switchEmuAnim(1);
                     
                     a.damagePlayer();
                 }
@@ -222,8 +230,8 @@ public class enemyMovement : MonoBehaviour
                     Debug.Log("Vert shot from " + position + " to " + playerPos);
                     playerMovement a = playerScript.GetComponent<playerMovement>();
                     emuAttackSounds[0].Play();
-                    //emuAnimator.Play("emuattack");
-                    
+                    switchEmuAnim(1);
+
                     a.damagePlayer();
                 }
             }
@@ -241,7 +249,7 @@ public class enemyMovement : MonoBehaviour
             GameObject player = GameObject.Find("/Player");
             playerMovement a = player.GetComponent<playerMovement>();
             emuAttackSounds[0].Play();
-            //emuAnimator.Play("emuattack");
+            switchEmuAnim(1);
             a.damagePlayer();
             
         }

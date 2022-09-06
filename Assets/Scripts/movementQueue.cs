@@ -21,6 +21,7 @@ public class movementQueue : MonoBehaviour
     //animation things
     public Animator aussieAnimator;
     public int currentAnim;
+    public Animator emuAnimator;
     // 0 = idle
     // 1 = attack hori
     public SpriteRenderer aussieSpriteRenderer;
@@ -401,7 +402,8 @@ public class movementQueue : MonoBehaviour
                             gm.enemies[j] = null;
                             shoot(2.5f, 0, new Vector3(0, 0, -90), false);
                             emuSounds[1].Play();
-                            Destroy(enemies[j]);
+
+                            EmuDeath(j);
                         }
                         else if (wall2) {
                             shoot(2.5f, 0, new Vector3(0, 0, -90), false);
@@ -412,7 +414,7 @@ public class movementQueue : MonoBehaviour
                             gm.enemies[j] = null;
                             shoot(2.5f, 0, new Vector3(0, 0, -90), true);
                             emuSounds[1].Play();
-                            Destroy(enemies[j]);
+                            EmuDeath(j);
                         } else {
                             shoot(2.5f, 0, new Vector3(0, 0, -90), true);
                             Debug.Log(pmScript.position.x + ", " + enemies[j].GetComponent<enemyMovement>().position.x);
@@ -445,7 +447,7 @@ public class movementQueue : MonoBehaviour
                             gm.enemies[j] = null;
                             shoot(-2.5f, 0, new Vector3(0, 0, 90), false);
                             emuSounds[1].Play();
-                            Destroy(enemies[j]);
+                            EmuDeath(j);
                         }
                         else if (wall2) {
                             shoot(-2.5f, 0, new Vector3(0, 0, 90), false);
@@ -456,7 +458,7 @@ public class movementQueue : MonoBehaviour
                             gm.enemies[j] = null;
                             shoot(-2.5f, 0, new Vector3(0, 0, 90), true);
                             emuSounds[1].Play();
-                            Destroy(enemies[j]);
+                            EmuDeath(j);
                         } else {
                             shoot(-2.5f, 0, new Vector3(0, 0, 90), true);
                             Debug.Log(pmScript.position.x + ", " + enemies[j].GetComponent<enemyMovement>().position.x);
@@ -487,7 +489,9 @@ public class movementQueue : MonoBehaviour
                                     
                         gm.enemies[j] = null;
                         emuSounds[2].Play();
-                        Destroy(enemies[j]);
+                        emuAnimator.SetInteger("emuAnim", 2);
+                        EmuDeath(j);
+
                     }
                     if (wall1){
 
@@ -497,7 +501,8 @@ public class movementQueue : MonoBehaviour
                         gm.enemies[j] = null;
                         shoot(0, -2.5f, new Vector3(0, 0, 180), false);
                         emuSounds[2].Play();
-                        Destroy(enemies[j]);
+                        emuAnimator.SetInteger("emuAnim", 2);
+                        EmuDeath(j);
                     }
                     else if (wall2) {
                         shoot(0, -2.5f, new Vector3(0, 0, 180), false);
@@ -508,7 +513,8 @@ public class movementQueue : MonoBehaviour
                         gm.enemies[j] = null;
                         shoot(0, -2.5f, new Vector3(0, 0, 180), true);
                         emuSounds[2].Play();
-                        Destroy(enemies[j]);
+                        emuAnimator.SetInteger("emuAnim", 2);
+                        EmuDeath(j);
                     } else {
                         shoot(0, -2.5f, new Vector3(0, 0, 180), true);
                         Debug.Log(pmScript.position.x + ", " + enemies[j].GetComponent<enemyMovement>().position.x);
@@ -548,7 +554,8 @@ public class movementQueue : MonoBehaviour
                         gm.enemies[j] = null;
                         shoot(0, 2.5f, new Vector3(0, 0, 0), false);
                         emuSounds[2].Play();
-                        Destroy(enemies[j]);
+                        emuAnimator.SetInteger("emuAnim", 2);
+                        EmuDeath(j);
                     }
                     else if (wall2) {
                         shoot(0, 2.5f, new Vector3(0, 0, 0), false);
@@ -559,7 +566,8 @@ public class movementQueue : MonoBehaviour
                         gm.enemies[j] = null;
                         shoot(0, 2.5f, new Vector3(0, 0, 0), true);
                         emuSounds[2].Play();
-                        Destroy(enemies[j]);
+                        emuAnimator.SetInteger("emuAnim", 2);
+                        EmuDeath(j);
                     } else {
                         shoot(0, 2.5f, new Vector3(0, 0, 0), true);
                         Debug.Log(pmScript.position.x + ", " + enemies[j].GetComponent<enemyMovement>().position.x);
@@ -573,6 +581,12 @@ public class movementQueue : MonoBehaviour
                 break;
         }
             
+    }
+
+    IEnumerator EmuDeath(int i)
+    {
+        yield return new WaitForSeconds(0.6f);
+        Destroy(enemies[i]);
     }
 
 }
